@@ -1,7 +1,6 @@
-POST = 0.0.0.0
-
+PORT ?= 8000
 start:
-	php artisan serve
+	php artisan serve --host 0.0.0.0:$(PORT)
 
 setup:
 	composer install

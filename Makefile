@@ -1,7 +1,7 @@
 POST = 0.0.0.0
 
 start:
-	php artisan serve --host $(POST)
+	php artisan serve
 
 setup:
 	composer install

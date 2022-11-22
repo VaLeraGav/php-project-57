@@ -1,6 +1,6 @@
 PORT ?= 8000
 start:
-	php artisan serve --host 0.0.0.0:$(PORT)
+	php artisan serve --host 0.0.0.0
 
 setup:
 	composer install
@@ -10,6 +10,7 @@ setup:
 	php artisan migrate
 	php artisan db:seed
 	npm install
+	npm run build
 
 update db:
 	rm database/database.sqlite

@@ -1,2 +1,5 @@
-### Hexlet tests and linter status:
-[![Actions Status](https://github.com/VaLeraGav/php-project-57/workflows/hexlet-check/badge.svg)](https://github.com/VaLeraGav/php-project-57/actions)
+
+# Task Manager
+
+Демонстрационный проект:
+https://php-task-manager-ru.hexlet.app/

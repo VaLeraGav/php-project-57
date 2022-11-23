@@ -50,6 +50,7 @@
                 </div>
             </div>
         </nav>
+{{--        @include('flash::message')  вывод с grid --}}
     </header>
 
     <section class="bg-white">
@@ -57,8 +58,8 @@
             @yield('content')
         </div>
     </section>
-</div>
 
+</div>
 
 </body>
 </html>

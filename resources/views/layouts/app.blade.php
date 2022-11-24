@@ -24,33 +24,44 @@
                     <span
                         class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">{{ __('layout.title') }}</span>
                 </a>
+                @guest()
 
-                <div class="flex items-center lg:order-2">
-                    <a href="/login"
-                       class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">{{ __('layout.login') }}</a>
-                    <a href="/register"
-                       class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">{{ __('layout.registration') }}</a>
-                </div>
+                    <div class="flex items-center lg:order-2">
+                        <a href="{{ route("login") }}"
+                           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">{{ __('layout.login') }}</a>
+                        <a href="{{ route("register") }}"
+                           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">{{ __('layout.registration') }}</a>
+                    </div>
+                @endguest
+                @auth()
+                    <div class="flex items-center lg:order-2">
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                        <a href="{{ route("logout") }}"
+                           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">{{ __('layout.logout') }}</a>
+                    </div>
+                @endauth
 
                 <div class="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1">
                     <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
                         <li>
-                            <a href="/tasks"
+                            <a href="{{ route('tasks.index') }}"
                                class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">{{ __('layout.tasks') }}</a>
                         </li>
                         <li>
-                            <a href="/task_statuses"
+                            <a href="{{ route('task_statuses.index') }} "
                                class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">{{ __('layout.task_statuses') }}</a>
                         </li>
                         <li>
-                            <a href="/labels"
+                            <a href="{{ route('labels.index') }}"
                                class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">{{ __('layout.labels') }}</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
-{{--        @include('flash::message')  вывод с grid --}}
+        {{--        @include('flash::message')  вывод с grid --}}
     </header>
 
     <section class="bg-white">

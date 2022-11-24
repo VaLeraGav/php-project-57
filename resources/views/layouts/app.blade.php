@@ -39,7 +39,10 @@
                             @csrf
                         </form>
                         <a href="{{ route("logout") }}"
-                           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">{{ __('layout.logout') }}</a>
+                           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            {{ __('layout.logout') }}
+                        </a>
                     </div>
                 @endauth
 

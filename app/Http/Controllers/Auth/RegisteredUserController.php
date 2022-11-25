@@ -26,18 +26,28 @@ class RegisteredUserController extends Controller
     /**
      * Handle an incoming registration request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        $request->validate(
+            [
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
+                // 'password' => ['required', 'confirmed', Rules\Password::defaults()],
+                'password' => ['required', 'confirmed', 'min:8']
+            ],
+            $messages = [
+                'name' => 'The name must not be greater than 255 characters.',
+                'email' => 'The email must not be greater than 255 characters.',
+                'email.unique' => 'Электронное письмо уже зарегистрировано',
+                'password.min' => 'Пароль должен иметь длину не менее 8 символов',
+                'password.confirmed' => 'Пароль и подтверждение не совпадают'
+            ]
+        );
 
         $user = User::create([
             'name' => $request->name,

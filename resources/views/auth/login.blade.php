@@ -4,14 +4,17 @@
     <h2 class="text-center"><a href="https://php-task-manager-ru.hexlet.app">Менеджер задач</a></h2>
 
     <!-- Validation Errors -->
-    @if ($errors->any())
-        <ul class='text-sm text-red-600 space-y-1'>
-            @foreach ($errors->all() as $error)
-                <li> {{ $error }}
-                <li>
-            @endforeach
-        </ul>
-    @endif
+    <div class='mb-4'>
+        @if ($errors->any())
+            <div class='font-medium text-red-600'>Упс! Что-то пошло не так:</div>
+            <ul class='mt-3 list-disc list-inside text-sm text-red-600'>
+                @foreach ($errors->all() as $error)
+                    <li> {{ $error }} </li>
+
+                @endforeach
+            </ul>
+        @endif
+    </div>
 
     <form method="POST" action="{{ route('login') }}">
         @csrf

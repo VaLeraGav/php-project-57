@@ -6,6 +6,7 @@ use App\Http\Requests\StoreTaskStatusRequest;
 use App\Http\Requests\UpdateTaskStatusRequest;
 use Illuminate\Http\Request;
 use App\Models\TaskStatus;
+use Illuminate\Support\Facades\Auth;
 
 class TaskStatusController extends Controller
 {
@@ -18,30 +19,25 @@ class TaskStatusController extends Controller
 
     public function create()
     {
+        if (Auth::guest()) {
+            return abort(403);
+        }
+
         $taskStatus = new TaskStatus();
         return view('task_statuses.create', compact('taskStatus'));
     }
 
     public function store(StoreTaskStatusRequest $request)
     {
-//        $data = $this->validate($request, [
-//            'name' => 'required|min:3|max:255|unique:task_statuses,name',
-//        ]);
-
-//        $data = $request->validate(
-//            ['name' => 'required|max:100|unique:task_statuses'],
-//            $messages = [
-//                'unique' => 'Статус с таким именем уже существует',
-//                'max' => 'Имя не должно превышать 100 символов',
-//                'required' => 'Это обязательное поле'
-//            ]
-//        );
+        if (Auth::guest()) {
+            return redirect()->route('task_statuses.index');
+        }
 
         $data = $request->validated();
-
         $taskStatus = new TaskStatus();
         $taskStatus->fill($data);
         $taskStatus->save();
+
         flash('Статус успешно добавлен!')->success();
         return redirect()
             ->route('task_statuses.index');
@@ -54,22 +50,21 @@ class TaskStatusController extends Controller
 
     public function update(UpdateTaskStatusRequest $request, TaskStatus $taskStatus)
     {
-//        $data = $this->validate($request, [
-//            'name' => 'required|max:255|unique:task_statuses,name'
-//        ]);
+        if (Auth::guest()) {
+            return redirect()->route('task_statuses.index');
+        }
 
         $data = $request->validated();
-
         $taskStatus->fill($data);
         $taskStatus->save();
+
         flash('Статус отредактирован успешно!')->success();
         return redirect()
             ->route('task_statuses.index');
     }
 
-    public function destroy($id)
+    public function destroy(TaskStatus $taskStatus)
     {
-        $taskStatus = TaskStatus::find($id);
         if ($taskStatus) {
             $taskStatus->delete();
             flash('Статус успешно удален!')->success();

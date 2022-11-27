@@ -28,10 +28,6 @@ class AppServiceProvider extends ServiceProvider
         if (env('APP_ENV') !== 'local') {// Default value should be false for local server
             URL::forceScheme('https');
         }
-
-//        if (env('FORCE_HTTPS', false)) {// Default value should be false for local server
-//            URL::forceScheme('https');
-//        }
         Paginator::useTailwind();
     }
 }

@@ -6,17 +6,19 @@
 
         <div class="w-full flex items-center">
             <div>
-                <form method="GET" action="https://php-task-manager-ru.hexlet.app/tasks" accept-charset="UTF-8"
+                <form method="GET" action="{{ route('tasks.index') }}" accept-charset="UTF-8"
                       class="">
                     <div class="flex">
                         <div>
-                            <select class="rounded border-gray-300" name="filter[status_id]">
-                                <option selected="selected" value="">Статус</option>
-                                <option value="1">новая</option>
-                                <option value="2">завершена</option>
-                                <option value="3">выполняется</option>
-                                <option value="4">в архиве</option>
-                            </select>
+                            {{--                            <select class="rounded border-gray-300" name="filter[status_id]">--}}
+                            {{--                                <option selected="selected" value="">Статус</option>--}}
+                            {{--                                <option value="1">новая</option>--}}
+                            {{--                                <option value="2">завершена</option>--}}
+                            {{--                                <option value="3">выполняется</option>--}}
+                            {{--                                <option value="4">в архиве</option>--}}
+                            {{--                            </select>--}}
+
+
                         </div>
                         <div>
                             <select class="ml-2 rounded border-gray-300" name="filter[created_by_id]">
@@ -24,18 +26,6 @@
                                 <option value="1">Марк Евгеньевич Гаврилова</option>
                                 <option value="2">Муравьёваа Ева Максимовна</option>
                                 <option value="3">Коновалова Ярослав Максимович</option>
-                                <option value="4">Тихонов Бронислав Алексеевич</option>
-                                <option value="5">Изольда Евгеньевна Павловаа</option>
-                                <option value="6">Волкова Людмила Ивановна</option>
-                                <option value="7">Зинаида Дмитриевна Суворова</option>
-                                <option value="8">Пестова Артём Андреевич</option>
-                                <option value="9">Мясникова Радислав Сергеевич</option>
-                                <option value="10">Алёна Сергеевна Дроздоваа</option>
-                                <option value="11">Александра Владимировна Власоваа</option>
-                                <option value="12">Ярослава Львовна Соловьёва</option>
-                                <option value="13">Фёдороваа Клара Александровна</option>
-                                <option value="14">Александр Алексеевич Егоров</option>
-                                <option value="15">Кошелева Мальвина Борисовна</option>
                             </select>
                         </div>
                         <div>
@@ -44,18 +34,6 @@
                                 <option value="1">Марк Евгеньевич Гаврилова</option>
                                 <option value="2">Муравьёваа Ева Максимовна</option>
                                 <option value="3">Коновалова Ярослав Максимович</option>
-                                <option value="4">Тихонов Бронислав Алексеевич</option>
-                                <option value="5">Изольда Евгеньевна Павловаа</option>
-                                <option value="6">Волкова Людмила Ивановна</option>
-                                <option value="7">Зинаида Дмитриевна Суворова</option>
-                                <option value="8">Пестова Артём Андреевич</option>
-                                <option value="9">Мясникова Радислав Сергеевич</option>
-                                <option value="10">Алёна Сергеевна Дроздоваа</option>
-                                <option value="11">Александра Владимировна Власоваа</option>
-                                <option value="12">Ярослава Львовна Соловьёва</option>
-                                <option value="13">Фёдороваа Клара Александровна</option>
-                                <option value="14">Александр Алексеевич Егоров</option>
-                                <option value="15">Кошелева Мальвина Борисовна</option>
                             </select>
                         </div>
                         <div>
@@ -68,79 +46,52 @@
             </div>
 
             <div class="ml-auto">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    @auth()
+                        @csrf
+                        <a href="{{ route('tasks.create') }}"
+                           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            Создать задачу          </a>
+                    @endauth
+                </div>
             </div>
         </div>
 
         <table class="mt-4">
             <thead class="border-b-2 border-solid border-black text-left">
             <tr>
-                <th>ID</th>
-                <th>Статус</th>
-                <th>Имя</th>
-                <th>Автор</th>
-                <th>Исполнитель</th>
-                <th>Дата создания</th>
+                <th scope="col">ID</th>
+                <th scope="col">Статус</th>
+                <th scope="col">Имя</th>
+                <th scope="col">Автор</th>
+                <th scope="col">Исполнитель</th>
+                <th scope="col">Дата создания</th>
+                @auth
+                    <th scope="col">Изменить</th>
+                @endauth
             </tr>
             </thead>
-            <tbody>
-            <tr class="border-b border-dashed text-left">
-                <td>1</td>
-                <td>в архиве</td>
-                <td>
-                    <a class="text-blue-600 hover:text-blue-900" href="https://php-task-manager-ru.hexlet.app/tasks/1">
-                        Исправить ошибку в какой-нибудь строке
-                    </a>
-                </td>
-                <td>Муравьёваа Ева Максимовна</td>
-                <td>Коновалова Ярослав Максимович</td>
-                <td>23.11.2022</td>
-                <td>
-                </td>
-            </tr>
-            <tr class="border-b border-dashed text-left">
-                <td>2</td>
-                <td>новая</td>
-                <td>
-                    <a class="text-blue-600 hover:text-blue-900" href="https://php-task-manager-ru.hexlet.app/tasks/2">
-                        Допилить дизайн главной страницы
-                    </a>
-                </td>
-                <td>Коновалова Ярослав Максимович</td>
-                <td>Коновалова Ярослав Максимович</td>
-                <td>23.11.2022</td>
-                <td>
-                </td>
-            </tr>
-            <tr class="border-b border-dashed text-left">
-                <td>3</td>
-                <td>новая</td>
-                <td>
-                    <a class="text-blue-600 hover:text-blue-900" href="https://php-task-manager-ru.hexlet.app/tasks/3">
-                        Отрефакторить авторизацию
-                    </a>
-                </td>
-                <td>Фёдороваа Клара Александровна</td>
-                <td>Марк Евгеньевич Гаврилова</td>
-                <td>23.11.2022</td>
-                <td>
-                </td>
-            </tr>
-            <tr class="border-b border-dashed text-left">
-                <td>4</td>
-                <td>завершена</td>
-                <td>
-                    <a class="text-blue-600 hover:text-blue-900" href="https://php-task-manager-ru.hexlet.app/tasks/4">
-                        Доработать команду подготовки БД
-                    </a>
-                </td>
-                <td>Изольда Евгеньевна Павловаа</td>
-                <td>Марк Евгеньевич Гаврилова</td>
-                <td>23.11.2022</td>
-                <td>
-                </td>
-            </tr>
-
-            </tbody>
+            @if (count($tasks))
+                <tbody>
+                @foreach($tasks as $task)
+                    <tr class="border-b border-dashed text-left">
+                        <td>{{ $task->id }}</td>
+                        <td>{{ $task->status_id }}</td>
+                        <td>
+                            <a class="text-blue-600 hover:text-blue-900"
+                               href="{{ route('tasks.show', $task) }}">
+                                {{ $task->name }}
+                            </a>
+                        </td>
+                        <td>{{ $task->createdBy->name ?? null }}</td>
+                        <td>{{ $task->assignedTo->name ?? null }}</td>
+                        <td>{{ $task->created_at }}</td>
+                        <td>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            @endif
         </table>
 
         <div class="mt-4">
@@ -202,7 +153,6 @@
                     </div>
                 </div>
             </nav>
-
         </div>
     </div>
 @endsection

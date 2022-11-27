@@ -31,7 +31,7 @@
                     <tr class="border-b border-dashed text-left">
                         <td>{{ $status->id }}</td>
                         <td>{{ $status->name }}</td>
-                        <td>{{ $status->updated_at }}</td>
+                        <td>{{ $status->updated_at->format('d.m.Y') }}</td>
                         @auth()
                             <td>
                                 <form action="{{ route('task_statuses.destroy', ['task_status' => $status->id]) }}"
@@ -52,6 +52,5 @@
             @endif
         </table>
         <div class="mt-4 grid col-span-full">{{ $taskStatuses->links() }}</div>
-
     </div>
 @endsection

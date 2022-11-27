@@ -36,11 +36,11 @@ jobs:
       - name: Execute tests via PHPUnit
         run: make test
 
-#      - name: Run test & publish code coverage
-#        uses: paambaati/codeclimate-action@v3.2.0
-#        env:
-#          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-#        with:
-#          coverageCommand: make test-coverage
-#          coverageLocations: build/logs/clover.xml:clover
-#          debug: true
+      - name: Run test & publish code coverage
+        uses: paambaati/codeclimate-action@v3.2.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          coverageCommand: make test-coverage
+          coverageLocations: build/logs/clover.xml:clover
+          debug: true

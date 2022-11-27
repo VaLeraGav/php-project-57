@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Http\Requests\StoreLabelRequest;
 use App\Http\Requests\UpdateLabelRequest;
 use App\Models\Label;
@@ -69,5 +68,4 @@ class LabelController extends Controller
         }
         return redirect()->route('labels.index');
     }
-
 }

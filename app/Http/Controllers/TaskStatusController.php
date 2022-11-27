@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 class TaskStatusController extends Controller
 {
-
     public function index()
     {
         $taskStatuses = TaskStatus::paginate(10);

@@ -1,12 +1,16 @@
-
 @extends('layouts.app')
 
 @section('content')
     <div class="grid col-span-full">
         <h1 class="mb-5">Метки</h1>
 
-        <div>
-        </div>
+        @auth()
+            <div>
+                <a href="{{ route('labels.create') }}"
+                   class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Создать метку</a>
+            </div>
+        @endauth
 
         <table class="mt-4">
             <thead class="border-b-2 border-solid border-black text-left">
@@ -15,24 +19,39 @@
                 <th>Имя</th>
                 <th>Описание</th>
                 <th>Дата создания</th>
+                @auth
+                    <th>Действие</th>
+                @endauth
             </tr>
             </thead>
-            <tbody><tr class="border-b border-dashed text-left">
-                <td>1</td>
-                <td>ошибка</td>
-                <td>Какая-то ошибка в коде или проблема с функциональностью</td>
-                <td>23.11.2022</td>
-                <td>
-                </td>
-            </tr>
-            <tr class="border-b border-dashed text-left">
-                <td>2</td>
-                <td>документация</td>
-                <td>Задача которая касается документации</td>
-                <td>23.11.2022</td>
-                <td>
-                </td>
-            </tr>
-            </tbody></table>
+            @if (count($labels))
+                <tbody>
+                @foreach($labels as $label)
+                    <tr class="border-b border-dashed text-left">
+                        <td>{{ $label->id }}</td>
+                        <td>{{ $label->name }}</td>
+                        <td>{{ $label->description }}</td>
+                        <td>{{ $label->updated_at->format('d.m.Y') }}</td>
+                        @auth()
+                            <td>
+                                <form action="{{ route('labels.destroy', ['label' => $label->id]) }}"
+                                      method="post" class=" float-left">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class=" btn btn-danger btn-sm "
+                                            onclick="return confirm('Подтвердите удаление')">
+                                        Удалить
+                                    </button>
+                                </form>
+                                <a href="{{ route('labels.edit', $label->id) }}">Изменить</a>
+                            </td>
+                        @endauth
+                    </tr>
+                @endforeach
+                </tbody>
+            @endif
+        </table>
+        <div class="mt-4 grid col-span-full">{{ $labels->links() }}</div>
     </div>
+
 @endsection

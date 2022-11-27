@@ -25,9 +25,7 @@ class TaskStatusControllerTest extends TestCase
 
     public function test_access_to_the_task_status_page()
     {
-        $response = $this->actingAs($this->user)
-            ->withSession(['banned' => false])
-            ->get(route('task_statuses.index'));
+        $response = $this->get(route('task_statuses.index'));
 
         $response->assertOk();
     }
@@ -53,14 +51,14 @@ class TaskStatusControllerTest extends TestCase
         $this->assertDatabaseMissing('task_statuses', $this->data);
     }
 
-    public function test_not_create_task_status_without_authorized(): void
+    public function test_not_create_task_status_without_authorized()
     {
         $response = $this->get(route('task_statuses.create'));
 
         $response->assertStatus(403);
     }
 
-    public function test_edit_page()
+    public function test_edit_page_task_status()
     {
         $response = $this->actingAs($this->user)
             ->withSession(['banned' => false])

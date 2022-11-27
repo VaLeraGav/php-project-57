@@ -17,7 +17,8 @@
 </head>
 <body style="background: #cce2fd">
 <div id="app">
-    <header class="fixed w-full">
+    {{--    <header class="fixed w-full">--}}
+    <header>
         <nav class="bg-white border-gray-200 py-2.5 dark:bg-gray-900 shadow-md">
             <div class="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto">
                 <a href="/" class="flex items-center">
@@ -64,11 +65,12 @@
                 </div>
             </div>
         </nav>
-        {{--        @include('flash::message')  вывод с grid --}}
     </header>
-
     <section>
-        <div class="grid max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-28">
+        <div>
+            @include('flash::message')
+        </div>
+        <div class="grid max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 ">
             @yield('content')
         </div>
         <hr style="

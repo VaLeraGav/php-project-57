@@ -23,8 +23,9 @@ class TaskController extends Controller
         return view('tasks.create', compact('task', 'taskStatuses', 'users'));
     }
 
-    public function show()
+    public function show(Task $task)
     {
-        return view('tasks.show');
+
+        return view('tasks.show', compact('task'));
     }
 }

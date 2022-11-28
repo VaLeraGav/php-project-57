@@ -44,6 +44,9 @@ class TaskStatusController extends Controller
 
     public function edit(TaskStatus $taskStatus)
     {
+        if (Auth::guest()) {
+            return abort(403);
+        }
         return view('task_statuses.edit', compact('taskStatus'));
     }
 

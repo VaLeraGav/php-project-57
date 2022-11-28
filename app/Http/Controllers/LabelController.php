@@ -42,6 +42,9 @@ class LabelController extends Controller
 
     public function edit(Label $label)
     {
+        if (Auth::guest()) {
+            return abort(403);
+        }
         return view('labels.edit', compact('label'));
     }
 

@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\TaskStatus;
 use App\Models\User;
@@ -13,14 +12,12 @@ class TaskStatusControllerTest extends TestCase
     private TaskStatus $taskStatus;
     private array $data;
 
-    use RefreshDatabase;
-
     protected function setUp(): void
     {
         parent::setUp();
         $this->user = User::factory()->create();
-        $this->data = TaskStatus::factory()->make()->only(['name']);
         $this->taskStatus = TaskStatus::factory()->create();
+        $this->data = TaskStatus::factory()->make()->only(['name']);
     }
 
     public function test_access_to_the_task_status_page()
@@ -51,6 +48,14 @@ class TaskStatusControllerTest extends TestCase
         $this->assertDatabaseMissing('task_statuses', $this->data);
     }
 
+    public function test_create_task_status()
+    {
+        $response = $this->actingAs($this->user)
+            ->get(route('task_statuses.create'));
+
+        $response->assertOk();
+    }
+
     public function test_not_create_task_status_without_authorized()
     {
         $response = $this->get(route('task_statuses.create'));
@@ -65,6 +70,13 @@ class TaskStatusControllerTest extends TestCase
             ->get(route('task_statuses.edit', $this->taskStatus));
 
         $response->assertOk();
+    }
+
+    public function test_not_edit_page_tasks_without_authorized()
+    {
+        $response = $this->get(route('task_statuses.edit', $this->taskStatus));
+
+        $response->assertStatus(403);
     }
 
     public function test_update_task_status()

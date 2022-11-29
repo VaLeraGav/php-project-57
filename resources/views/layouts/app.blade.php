@@ -66,21 +66,19 @@
             </div>
         </nav>
     </header>
+
+    @include('flash::message')
+
     <section>
-        <div>
-            @include('flash::message')
-        </div>
-        <div class="grid max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 ">
-            @yield('content')
-        </div>
-        <hr style="
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-        border: 0;
-        border-top: 2px solid rgba(0, 0, 0, 0.1);
-        ">
+        @yield('content')
     </section>
 
+    <hr style="
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      border: 0;
+      border-top: 2px solid rgba(0, 0, 0, 0.1);
+          ">
 </div>
 
 </body>

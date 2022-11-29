@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-
             $table->bigInteger('status_id');
             $table->foreign('status_id')->references('id')->on('task_statuses');
             $table->bigInteger('created_by_id');
@@ -25,12 +24,6 @@ return new class extends Migration
             $table->bigInteger('assigned_to_id')->nullable();
             $table->foreign('assigned_to_id')->references('id')->on('users');
             $table->timestamps();
-
-//            $table->foreignId('status_id')->constrained('task_statuses');
-//            $table->foreignId('created_by_id')->constrained('users');
-//            $table->bigInteger('assigned_to_id')->nullable();
-//            $table->foreign('assigned_to_id')->references('id')->on('users');
-//            $table->timestamps();
         });
     }
 

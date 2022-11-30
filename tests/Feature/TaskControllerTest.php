@@ -90,7 +90,7 @@ class TaskControllerTest extends TestCase
     {
         $response = $this->actingAs($this->user)
             ->withSession(['banned' => false])
-            ->put(route('tasks.update', $this->task), $this->data);
+            ->patch(route('tasks.update', $this->task), $this->data);
 
         $response->assertRedirect('tasks');
 
@@ -113,7 +113,7 @@ class TaskControllerTest extends TestCase
             ->delete(route('tasks.destroy', $this->task));
 
         $response->assertSessionHasNoErrors();
-        $response->assertRedirect('task_statuses');
+        $response->assertRedirect('tasks');
 
         $this->assertDatabaseMissing(
             'tasks',
@@ -130,9 +130,10 @@ class TaskControllerTest extends TestCase
     {
         $responseUser1 = $this->actingAs($this->user)
             ->withSession(['banned' => false])
-            ->delete(route('tasks.store', $this->task));
+            ->post(route('tasks.store', $this->data));
 
-        $user2 = User::factory()->make();
+        $user2 = User::factory()->create();
+
         $responseUser2 = $this->actingAs($user2)
             ->withSession(['banned' => false])
             ->delete(route('tasks.destroy', $this->task));

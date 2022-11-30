@@ -3,7 +3,7 @@
 @section('content')
     <div class="grid max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 ">
         <div class="grid col-span-full">
-            <h1 class="mb-5">Задачи</h1>
+            <h1 class="mb-5">{{  __('tasks.Tasks') }}</h1>
 
             <div class="w-full flex items-center">
                 <div>
@@ -17,7 +17,7 @@
                                     @foreach ($taskStatuses as $key => $var)
                                         @if($key === 1)
                                             <option selected="selected">
-                                                Статус
+                                                {{  __('tasks.Status') }}
                                             </option>
                                         @endif
                                         <option value="{{ $key }}" @selected(old('version') == $var)>
@@ -33,7 +33,7 @@
                                     @foreach ($users as $key => $var)
                                         @if($key === 1)
                                             <option selected="selected">
-                                                Авторы
+                                                {{  __('tasks.Authors') }}
                                             </option>
                                         @endif
                                         <option value="{{ $key }}" @selected(old('version') == $var)>
@@ -48,7 +48,7 @@
                                     @foreach ($users as $key => $var)
                                         @if($key === 1)
                                             <option selected="selected">
-                                                Исполнитель
+                                                {{  __('tasks.Performer') }}
                                             </option>
                                         @endif
                                         <option value="{{ $key }}" @selected(old('version') == $var)>
@@ -60,7 +60,7 @@
                             </div>
                             <div>
                                 <input class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2"
-                                       type="submit" value="Применить">
+                                       type="submit" value="{{  __('tasks.Apply') }}">
                             </div>
 
                         </div>
@@ -73,7 +73,7 @@
                             @csrf
                             <a href="{{ route('tasks.create') }}"
                                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                Создать задачу          </a>
+                                {{  __('tasks.Create a task') }}</a>
                         @endauth
                     </div>
                 </div>
@@ -82,13 +82,13 @@
                 <thead class="border-b-2 border-solid border-black text-left">
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Статус</th>
-                    <th scope="col">Имя</th>
-                    <th scope="col">Автор</th>
-                    <th scope="col">Исполнитель</th>
-                    <th scope="col">Дата создания</th>
+                    <th scope="col">{{ __('tasks.Status') }}</th>
+                    <th scope="col">{{ __('tasks.Name') }}</th>
+                    <th scope="col">{{ __('tasks.Author') }}</th>
+                    <th scope="col">{{ __('tasks.Performer') }}</th>
+                    <th scope="col">{{ __('tasks.Creation date') }}</th>
                     @auth
-                        <th scope="col">Изменить</th>
+                        <th scope="col">{{ __('tasks.Edit') }}</th>
                     @endauth
                 </tr>
                 </thead>
@@ -114,14 +114,15 @@
                                               method="post" class=" float-left">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm text-red-600 hover:text-red-900"
-                                                    onclick="return confirm('Подтвердите удаление')">
-                                                Удалить
+                                            <button type="submit"
+                                                    class="btn btn-danger btn-sm text-red-600 hover:text-red-900"
+                                                    onclick="return confirm({{ __('tasks.Confirm deletion') }})">
+                                                {{  __('tasks.Delete') }}
                                             </button>
                                         </form>
                                     @endif
                                     <a class="text-blue-600 hover:text-blue-900"
-                                       href="{{ route("tasks.edit", $task) }}">Изменить</a>
+                                       href="{{ route("tasks.edit", $task) }}">{{  __('tasks.Edit') }}</a>
                                 </td>
                             @endauth
                         </tr>

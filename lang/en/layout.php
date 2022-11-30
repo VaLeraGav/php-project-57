@@ -1,13 +1,14 @@
 <?php
 
 return [
-    'title' => 'Task Manager',
-    'login' => 'Log in',
-    'logout' => 'Log out',
-    'registration' => 'Registration',
-    'labels' => 'Labels',
-    'tasks' => 'Tasks',
-    'task_statuses' => 'Statuses',
-    'home_greetings' => 'Greetings from Hexlet!',
-    'home_description' => 'This is a simple task manager on Laravel',
+    'Title' => 'Task Manager',
+    'Login' => 'Log in',
+    'Logout' => 'Log out',
+    'Registration' => 'Registration',
+    'Labels' => 'Labels',
+    'Tasks' => 'Tasks',
+    'Statuses' => 'Statuses',
+    'Greetings from Hexlet' => 'Greetings from Hexlet!',
+    'This is a simple task manager on Laravel' => 'This is a simple task manager on Laravel',
 ];
+

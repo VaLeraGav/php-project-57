@@ -3,12 +3,12 @@
 @section('content')
     <div class="grid max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 ">
         <div class="grid col-span-full">
-            <h1 class="mb-5">Создать задачу</h1>
+            <h1 class="mb-5">{{ __('tasks.Create a task') }}</h1>
 
-            {{ Form::open(['url' => route('tasks.update', ['task' => $task]), 'method' => 'PATCH', 'class' => 'w-50']) }}
+            {{ Form::open(['url' => route('tasks.update', ['task' => $task]), 'method' => 'PUT', 'class' => 'w-50']) }}
             <div class="flex flex-col">
                 <div>
-                    <label for="name">Имя</label>
+                    <label for="name">{{ __('tasks.Name') }}</label>
                 </div>
                 <div class="mt-2">
                     <input class="rounded border-gray-300 w-1/3" name="name" type="text" id="name"
@@ -21,7 +21,7 @@
                 </div>
 
                 <div class="mt-2">
-                    <label for="description">Описание</label>
+                    <label for="description">{{ __('tasks.Description') }}</label>
                 </div>
                 <div>
                     <textarea class="rounded border-gray-300 w-1/3 h-32" cols="50" rows="10" name="description"
@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="mt-2">
-                    <label for="status_id">Статус</label>
+                    <label for="status_id">{{ __('tasks.Status') }}</label>
                 </div>
                 <div>
                     {{ Form::select('status_id', $taskStatus, $task->status_id, ['class' => 'form-control rounded border-gray-300 w-1/3', 'placeholder' => '----------']) }}
@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="mt-2">
-                    <label for="assigned_to_id">Исполнитель</label>
+                    <label for="assigned_to_id">{{ __('tasks.Performer') }}</label>
                 </div>
                 <div>
                     {{ Form::select('assigned_to_id', $users, $task->assigned_to_id, ['class' => 'form-control rounded border-gray-300 w-1/3', 'placeholder' => '----------']) }}
@@ -58,13 +58,13 @@
                 </div>
 
                 <div class="mt-2">
-                    <label for="labels">Исполнитель</label>
+                    <label for="labels">{{ __('tasks.Performer') }}</label>
                 </div>
                 <div>
                     {{ Form::select('labels[]', $labels, $task->labels, ['class' => 'form-control rounded border-gray-300 w-1/3 h-32', 'multiple' => 'multiple']) }}
                 </div>
                 <div class="mt-2">
-                    {{ Form::submit('Создать', ['class' => 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded']) }}
+                    {{ Form::submit( __('tasks.Create'), ['class' => 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded']) }}
                 </div>
             </div>
             {{ Form::close() }}

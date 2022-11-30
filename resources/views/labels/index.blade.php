@@ -3,13 +3,13 @@
 @section('content')
     <div class="grid max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 ">
         <div class="grid col-span-full">
-            <h1 class="mb-5">Метки</h1>
+            <h1 class="mb-5">{{ __('labels.Labels') }}</h1>
 
             @auth()
                 <div>
                     <a href="{{ route('labels.create') }}"
                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        Создать метку</a>
+                        {{ __('labels.Create a label') }}</a>
                 </div>
             @endauth
 
@@ -17,11 +17,11 @@
                 <thead class="border-b-2 border-solid border-black text-left">
                 <tr>
                     <th>ID</th>
-                    <th>Имя</th>
-                    <th>Описание</th>
-                    <th>Дата создания</th>
+                    <th>{{ __('labels.Name') }}</th>
+                    <th>{{ __('labels.Description') }}</th>
+                    <th>{{ __('labels.Creation date') }}</th>
                     @auth
-                        <th>Действие</th>
+                        <th>{{ __('labels.Actions') }}</th>
                     @endauth
                 </tr>
                 </thead>
@@ -40,12 +40,12 @@
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class=" btn btn-danger btn-sm text-red-600 hover:text-red-900"
-                                                onclick="return confirm('Подтвердите удаление')">
-                                            Удалить
+                                                onclick="return confirm( {{ __('labels.Confirm the deletion') }} )">
+                                            {{ __('labels.Delete') }}
                                         </button>
                                     </form>
                                     <a class="text-blue-600 hover:text-blue-900"
-                                       href="{{ route('labels.edit', $label->id) }}">Изменить</a>
+                                       href="{{ route('labels.edit', $label->id) }}">{{ __('labels.Edit') }}</a>
                                 </td>
                             @endauth
                         </tr>

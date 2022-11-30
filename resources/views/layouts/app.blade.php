@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="csrf-token" content="_token">
 
-    <title>{{ __('layout.title') }}</title>
+    <title>{{ __('layout.Title') }}</title>
 
     <!-- Styles -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -23,15 +23,15 @@
             <div class="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto">
                 <a href="/" class="flex items-center">
                     <span
-                        class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">{{ __('layout.title') }}</span>
+                        class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">{{ __('layout.Title') }}</span>
                 </a>
                 @guest()
 
                     <div class="flex items-center lg:order-2">
                         <a href="{{ route("login") }}"
-                           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">{{ __('layout.login') }}</a>
+                           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">{{ __('layout.Login') }}</a>
                         <a href="{{ route("register") }}"
-                           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">{{ __('layout.registration') }}</a>
+                           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">{{ __('layout.Registration') }}</a>
                     </div>
                 @endguest
                 @auth()
@@ -42,7 +42,7 @@
                         <a href="{{ route("logout") }}"
                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            {{ __('layout.logout') }}
+                            {{ __('layout.Logout') }}
                         </a>
                     </div>
                 @endauth
@@ -51,15 +51,15 @@
                     <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
                         <li>
                             <a href="{{ route('tasks.index') }}"
-                               class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">{{ __('layout.tasks') }}</a>
+                               class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">{{ __('layout.Tasks') }}</a>
                         </li>
                         <li>
                             <a href="{{ route('task_statuses.index') }} "
-                               class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">{{ __('layout.task_statuses') }}</a>
+                               class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">{{ __('layout.Statuses') }}</a>
                         </li>
                         <li>
                             <a href="{{ route('labels.index') }}"
-                               class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">{{ __('layout.labels') }}</a>
+                               class="block py-2 pl-3 pr-4 text-gray-700 hover:text-blue-700 lg:p-0">{{ __('layout.Labels') }}</a>
                         </li>
                     </ul>
                 </div>

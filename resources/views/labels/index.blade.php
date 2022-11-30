@@ -39,12 +39,13 @@
                                           method="post" class=" float-left">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class=" btn btn-danger btn-sm "
+                                        <button type="submit" class=" btn btn-danger btn-sm text-red-600 hover:text-red-900"
                                                 onclick="return confirm('Подтвердите удаление')">
                                             Удалить
                                         </button>
                                     </form>
-                                    <a href="{{ route('labels.edit', $label->id) }}">Изменить</a>
+                                    <a class="text-blue-600 hover:text-blue-900"
+                                       href="{{ route('labels.edit', $label->id) }}">Изменить</a>
                                 </td>
                             @endauth
                         </tr>

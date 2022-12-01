@@ -40,12 +40,12 @@ class UpdateTaskRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Это обязательное поле',
-            'name.max' => 'Максимальное количество знаков: 255',
-            'name.unique' => 'Задача с таким именем уже существует',
-            'status_id.required' => 'Это обязательное поле',
-            'assigned_to_id.required' => 'Это обязательное поле',
-            'description.max' => 'Максимальное количество знаков: 255',
+            'name.required' => __('errors.task.name_required'),
+            'name.max' => __('errors.task.name_max'),
+            'name.unique' => __('errors.task.name_unique'),
+            'status_id.required' => __('errors.task.status_id_required'),
+            'assigned_to_id.required' => __('errors.task.assigned_to_id_required'),
+            'description.max' => __('errors.task.description_max'),
         ];
     }
 }

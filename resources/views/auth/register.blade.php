@@ -1,12 +1,12 @@
 @extends('layouts.guest')
 
 @section('content')
-    <h2 class="text-center"><a href="/">Менеджер задач</a></h2>
+    <h2 class="text-center"><a href="/">{{ __('auth.Task Manager') }}</a></h2>
 
     <!-- Validation Errors -->
     <div class='mb-4'>
         @if ($errors->any())
-            <div class='font-medium text-red-600'>Упс! Что-то пошло не так:</div>
+            <div class='font-medium text-red-600'>{{ __('errors.message') }}:</div>
             <ul class='mt-3 list-disc list-inside text-sm text-red-600'>
                 @foreach ($errors->all() as $error)
                     <li> {{ $error }} </li>
@@ -21,7 +21,7 @@
         <!-- Name -->
         <div>
             <label class="block font-medium text-sm text-gray-700" for="name">
-                Имя
+                {{ __('auth.Name') }}
             </label>
 
             <input
@@ -43,7 +43,7 @@
         <!-- Password -->
         <div class="mt-4">
             <label class="block font-medium text-sm text-gray-700" for="password">
-                Пароль
+                {{ __('auth.Password') }}
             </label>
 
             <input
@@ -55,7 +55,7 @@
         <!-- Confirm Password -->
         <div class="mt-4">
             <label class="block font-medium text-sm text-gray-700" for="password_confirmation">
-                Подтверждение
+                {{ __('auth.Confirmation') }}
             </label>
 
             <input
@@ -66,12 +66,12 @@
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 hover:text-gray-900"
                href="{{ route('login') }}">
-                Уже зарегистрированы?
+                {{ __('auth.Already registered?') }}
             </a>
 
             <button type="submit"
                     class="inline-flex items-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4">
-                Зарегистрировать
+                {{ __('auth.Register') }}
             </button>
         </div>
     </form>

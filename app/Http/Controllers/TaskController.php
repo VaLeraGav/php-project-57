@@ -55,7 +55,7 @@ class TaskController extends Controller
         $task->save();
         $task->labels()->sync($request->labels);
 
-        flash('Задание добавлено успешно!')->success();
+        flash(__('flash.task.added'))->success();
         return redirect()
             ->route('tasks.index');
     }
@@ -73,7 +73,7 @@ class TaskController extends Controller
         return view('tasks.edit', compact('task', 'taskStatus', 'users', 'labels'));
     }
 
-    public function update(UpdateTaskRequest $request, TaskStatus $task)
+    public function update(UpdateTaskRequest $request, Task $task)
     {
         if (Auth::guest()) {
             return redirect()->route('tasks.index');
@@ -85,7 +85,7 @@ class TaskController extends Controller
 
         $task->labels()->sync($request->labels);
 
-        flash('Задача была успешно обновлена')->success();
+        flash(__('flash.task.edited'))->success();
         return redirect()
             ->route('tasks.index');
     }
@@ -95,7 +95,7 @@ class TaskController extends Controller
         if (Auth::id() === $task->created_by_id) {
             $task->labels()->detach();
             $task->delete();
-            flash('Задание успешно удалено!')->success();
+            flash(__('flash.task.delete'))->success();
         }
         return redirect()->route('tasks.index');
     }

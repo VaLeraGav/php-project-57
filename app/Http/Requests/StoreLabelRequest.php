@@ -37,10 +37,10 @@ class StoreLabelRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.unique' => 'Метка с таким именем уже существует',
-            'name.max' => 'Имя не должно превышать 255 символов',
-            'name.required' => 'Это обязательное поле',
-            'description.max' => 'Имя не должно превышать 500 символов',
+            'name.unique' => __('errors.label.name_unique'),
+            'name.max' => __('errors.label.name_max'),
+            'name.required' => __('errors.label.name_required'),
+            'description.max' => __('errors.label.description_max'),
         ];
     }
 }

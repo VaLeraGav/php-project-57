@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\Label;
 use App\Models\User;
@@ -12,8 +11,6 @@ class LabelControllerTest extends TestCase
     private User $user;
     private Label $label;
     private array $data;
-
-    use RefreshDatabase;
 
     protected function setUp(): void
     {
@@ -51,6 +48,14 @@ class LabelControllerTest extends TestCase
         $this->assertDatabaseMissing('labels', $this->data);
     }
 
+    public function test_create_labels()
+    {
+        $response = $this->actingAs($this->user)
+            ->get(route('labels.create'));
+
+        $response->assertOk();
+    }
+
     public function test_not_create_labels_without_authorized()
     {
         $response = $this->get(route('labels.create'));
@@ -65,6 +70,13 @@ class LabelControllerTest extends TestCase
             ->get(route('labels.edit', $this->label));
 
         $response->assertOk();
+    }
+
+    public function test_not_edit_page_tasks_without_authorized()
+    {
+        $response = $this->get(route('labels.edit', $this->label));
+
+        $response->assertStatus(403);
     }
 
     public function test_update_labels()

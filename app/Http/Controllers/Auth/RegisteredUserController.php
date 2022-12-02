@@ -41,11 +41,11 @@ class RegisteredUserController extends Controller
                 'password' => ['required', 'confirmed', 'min:8']
             ],
             $messages = [
-                'name' => 'The name must not be greater than 255 characters.',
-                'email' => 'The email must not be greater than 255 characters.',
-                'email.unique' => 'Электронное письмо уже зарегистрировано',
-                'password.min' => 'Пароль должен иметь длину не менее 8 символов',
-                'password.confirmed' => 'Пароль и подтверждение не совпадают'
+                'name' => __('errors.registered.name'),
+                'email.max' => __('errors.registered.email_max'),
+                'email.unique' => __('errors.registered.email_unique'),
+                'password.min' => __('errors.registered.password_min'),
+                'password.confirmed' => __('errors.registered.password_confirmed'),
             ]
         );
 

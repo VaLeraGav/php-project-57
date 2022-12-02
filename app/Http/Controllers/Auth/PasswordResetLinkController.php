@@ -32,9 +32,6 @@ class PasswordResetLinkController extends Controller
             [
                 'email' => ['required', 'email'],
             ],
-            $messages = [
-                'email' => 'Статус с таким именем уже существует'
-            ]
         );
 
         // We will send the password reset link to this user. Once we have attempted

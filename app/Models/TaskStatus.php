@@ -10,6 +10,8 @@ class TaskStatus extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name'
+        'id',
+        'name',
+        'created_at',
     ];
 }

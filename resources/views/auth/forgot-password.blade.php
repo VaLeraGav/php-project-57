@@ -4,7 +4,7 @@
     <!-- Validation Errors -->
     <div class='mb-4'>
         @if ($errors->any())
-            <div class='font-medium text-red-600'>Упс! Что-то пошло не так:</div>
+            <div class='font-medium text-red-600'>{{ __('errors.message') }}:</div>
             <ul class='mt-3 list-disc list-inside text-sm text-red-600'>
                 @foreach ($errors->all() as $error)
                     <li> {{ $error }} </li>
@@ -30,7 +30,7 @@
         <div class="flex items-center justify-end mt-4">
             <button type="submit"
                     class="inline-flex items-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                Сбросить пароль
+                {{ __('auth.Reset Password') }}
             </button>
         </div>
     </form>

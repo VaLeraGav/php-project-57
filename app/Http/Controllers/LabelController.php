@@ -35,13 +35,16 @@ class LabelController extends Controller
         $label->fill($data);
         $label->save();
 
-        flash('Метка успешно добавлена!')->success();
+        flash(__('flash.label.added'))->success();
         return redirect()
             ->route('labels.index');
     }
 
     public function edit(Label $label)
     {
+        if (Auth::guest()) {
+            return abort(403);
+        }
         return view('labels.edit', compact('label'));
     }
 
@@ -55,7 +58,7 @@ class LabelController extends Controller
         $label->fill($data);
         $label->save();
 
-        flash('Метка отредактирована успешно!')->success();
+        flash(__('flash.label.edited'))->success();
         return redirect()
             ->route('labels.index');
     }
@@ -64,7 +67,7 @@ class LabelController extends Controller
     {
         if ($label) {
             $label->delete();
-            flash('Статус успешно удален!')->success();
+            flash(__('flash.label.delete'))->success();
         }
         return redirect()->route('labels.index');
     }

@@ -13,50 +13,68 @@
                         <div class="flex">
                             <div>
 
-                                <select name="filter[status_id]" class="form-select ml-2 rounded border-gray-300">
-                                    @foreach ($taskStatuses as $key => $var)
-                                        @if($key === 1)
-                                            <option selected="selected">
-                                                {{  __('tasks.Status') }}
-                                            </option>
-                                        @endif
-                                        <option value="{{ $key }}" @selected(old('version') == $var)>
-                                            {{ Str::limit($var, 15) }}
-                                        </option>
-                                    @endforeach
-                                </select>
+{{--                                <select name="filter[status_id]" class="form-select ml-2 rounded border-gray-300">--}}
+{{--                                    @if(empty($taskStatuses))--}}
+{{--                                        <option selected="selected">--}}
+{{--                                            {{  __('tasks.Status') }}--}}
+{{--                                        </option>--}}
+{{--                                    @else--}}
+{{--                                        @foreach ($taskStatuses as $key => $var)--}}
+{{--                                            @if($key === 2)--}}
+{{--                                                <option selected="selected">--}}
+{{--                                                    {{  __('tasks.Status') }}--}}
+{{--                                                </option>--}}
+{{--                                            @endif--}}
+{{--                                            <option value="{{ $key }}" @selected(old('version') == $var)>--}}
+{{--                                                {{ Str::limit($var, 15) }}--}}
+{{--                                            </option>--}}
+{{--                                        @endforeach--}}
+{{--                                    @endif--}}
+{{--                                </select>--}}
 
-                                {{-- {{Form::select('filter[status_id]', $taskStatuses, $filter['status_id'] ?? null, ['placeholder' => 'Статус', 'class' => 'form-select ml-2 rounded border-gray-300'])}}--}}
+                                 {{Form::select('filter[status_id]', $taskStatuses, $filter['status_id'] ?? null, ['placeholder' => 'Статус', 'class' => 'form-select ml-2 rounded border-gray-300'])}}
                             </div>
                             <div>
-                                <select name="filter[created_by_id]" class="ml-2 rounded border-gray-300">
-                                    @foreach ($users as $key => $var)
-                                        @if($key === 1)
-                                            <option selected="selected">
-                                                {{  __('tasks.Authors') }}
-                                            </option>
-                                        @endif
-                                        <option value="{{ $key }}" @selected(old('version') == $var)>
-                                            {{ Str::limit($var, 30) }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                {{-- {{Form::select('filter[created_by_id]', $users, $filter['created_by_id'] ?? null, ['placeholder' => 'Авторы', 'class' => 'ml-2 rounded border-gray-300'])}}--}}
+{{--                                <select name="filter[created_by_id]" class="ml-2 rounded border-gray-300">--}}
+{{--                                    @if(empty($users))--}}
+{{--                                        <option selected="selected">--}}
+{{--                                            {{  __('tasks.Authors') }}--}}
+{{--                                        </option>--}}
+{{--                                    @else--}}
+{{--                                        @foreach ($users as $key => $var)--}}
+{{--                                            @if($key === 2)--}}
+{{--                                                <option selected="selected">--}}
+{{--                                                    {{  __('tasks.Authors') }}--}}
+{{--                                                </option>--}}
+{{--                                            @endif--}}
+{{--                                            <option value="{{ $key }}" @selected(old('version') == $var)>--}}
+{{--                                                {{ Str::limit($var, 30) }}--}}
+{{--                                            </option>--}}
+{{--                                        @endforeach--}}
+{{--                                    @endif--}}
+{{--                                </select>--}}
+                                 {{Form::select('filter[created_by_id]', $users, $filter['created_by_id'] ?? null, ['placeholder' => 'Авторы', 'class' => 'ml-2 rounded border-gray-300'])}}
                             </div>
                             <div>
-                                <select name="filter[assigned_to_id]" class="ml-2 rounded border-gray-300">
-                                    @foreach ($users as $key => $var)
-                                        @if($key === 1)
-                                            <option selected="selected">
-                                                {{  __('tasks.Performer') }}
-                                            </option>
-                                        @endif
-                                        <option value="{{ $key }}" @selected(old('version') == $var)>
-                                            {{ Str::limit($var, 30) }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                {{-- {{Form::select('filter[assigned_to_id]', $users, $filter['assigned_to_id'] ?? null, ['placeholder' => 'Исполнитель', 'class' => 'ml-2 rounded border-gray-300'])}}--}}
+{{--                                <select name="filter[assigned_to_id]" class="ml-2 rounded border-gray-300">--}}
+{{--                                    @if(empty($users))--}}
+{{--                                        <option selected="selected">--}}
+{{--                                            {{  __('tasks.Performer') }}--}}
+{{--                                        </option>--}}
+{{--                                    @else--}}
+{{--                                        @foreach ($users as $key => $var)--}}
+{{--                                            @if($key === 2)--}}
+{{--                                                <option selected="selected">--}}
+{{--                                                    {{  __('tasks.Performer') }}--}}
+{{--                                                </option>--}}
+{{--                                            @endif--}}
+{{--                                            <option value="{{ $key }}" @selected(old('version') == $var)>--}}
+{{--                                                {{ Str::limit($var, 30) }}--}}
+{{--                                            </option>--}}
+{{--                                        @endforeach--}}
+{{--                                    @endif--}}
+{{--                                </select>--}}
+                                 {{Form::select('filter[assigned_to_id]', $users, $filter['assigned_to_id'] ?? null, ['placeholder' => 'Исполнитель', 'class' => 'ml-2 rounded border-gray-300'])}}
                             </div>
                             <div>
                                 <input class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2"
@@ -108,8 +126,10 @@
                             <td>{{ $users[$task->assigned_to_id] ?? null }}</td>
                             <td>{{ $task->created_at->format('d.m.Y') }}</td>
                             @auth
+
                                 <td>
                                     @if(Auth::id() === $task->created_by_id)
+                                        {{ print_r($task->created_by_id) }}
                                         <form action="{{ route('tasks.destroy', $task)}}"
                                               method="post" class=" float-left">
                                             @csrf

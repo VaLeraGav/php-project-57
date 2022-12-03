@@ -13,6 +13,13 @@
         @endif
     </div>
 
+    <!-- Session Status -->
+    @if (session('status'))
+        <div class="font-medium text-sm text-green-600 mb-4">
+            {{ __('passwords.sent') }}
+        </div>
+    @endif
+
     <form method="POST" action="{{ route('password.email') }}">
         @csrf
         <!-- Email Address -->

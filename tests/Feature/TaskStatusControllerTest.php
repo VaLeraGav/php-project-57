@@ -110,5 +110,4 @@ class TaskStatusControllerTest extends TestCase
 
         $this->assertDatabaseMissing('task_statuses', $this->taskStatus->only(['name']));
     }
-
 }

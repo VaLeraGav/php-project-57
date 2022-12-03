@@ -142,5 +142,4 @@ class TaskControllerTest extends TestCase
 
         $this->assertDatabaseHas('tasks', $this->data);
     }
-
 }

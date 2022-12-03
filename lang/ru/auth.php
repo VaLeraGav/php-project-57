@@ -5,9 +5,10 @@ return [
     'password' => 'Указанный пароль неверен',
     'throttle' => 'Слишком много попыток входа в систему. Пожалуйста, повторите попытку через :seconds секунды',
 
-    'Reset Password' => 'Сбросить пароль',
     'Task Manager' => 'Менеджер задач',
     'Password' => 'Пароль',
+    'Confirm Password' => 'Подтвердите пароль',
+    'Reset Password' => 'Сбросить пароль',
     'Remember me' => 'Запомнить меня',
     'Forgot your password?' => 'Забыли пароль?',
     'Log in' => 'Войти',

@@ -1,7 +1,7 @@
 @extends('layouts.guest')
 
 @section('content')
-    <h2 class="text-center"><a href="https://php-task-manager-ru.hexlet.app">{{ __('auth.Task Manager') }}</a></h2>
+    <h2 class="text-center"><a href="{{ route('home') }}">{{ __('auth.Task Manager') }}</a></h2>
 
     <!-- Validation Errors -->
     <div class='mb-4'>
@@ -10,7 +10,6 @@
             <ul class='mt-3 list-disc list-inside text-sm text-red-600'>
                 @foreach ($errors->all() as $error)
                     <li> {{ $error }} </li>
-
                 @endforeach
             </ul>
         @endif

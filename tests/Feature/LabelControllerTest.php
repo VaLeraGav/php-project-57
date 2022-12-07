@@ -20,14 +20,14 @@ class LabelControllerTest extends TestCase
         $this->data = Label::factory()->make()->only(['name', 'description']);
     }
 
-    public function test_access_to_the_labels_page()
+    public function testAccessToTheLabelsPage()
     {
         $response = $this->get(route('labels.index'));
 
         $response->assertOk();
     }
 
-    public function test_store_labels()
+    public function testStoreLabels()
     {
         $response = $this->actingAs($this->user)
             ->withSession(['banned' => false])
@@ -39,16 +39,7 @@ class LabelControllerTest extends TestCase
         $this->assertDatabaseHas('labels', $this->data);
     }
 
-    public function test_not_create_store_labels_without_authorized()
-    {
-        $response = $this->post(route('labels.store'), $this->data);
-
-        $response->assertRedirect('labels');
-
-        $this->assertDatabaseMissing('labels', $this->data);
-    }
-
-    public function test_create_labels()
+    public function testCreateLabels()
     {
         $response = $this->actingAs($this->user)
             ->get(route('labels.create'));
@@ -56,14 +47,14 @@ class LabelControllerTest extends TestCase
         $response->assertOk();
     }
 
-    public function test_not_create_labels_without_authorized()
+    public function testNotCreateLabelsWithoutAuthorized()
     {
         $response = $this->get(route('labels.create'));
 
         $response->assertStatus(403);
     }
 
-    public function test_edit_page_labels()
+    public function testEditPageLabels()
     {
         $response = $this->actingAs($this->user)
             ->withSession(['banned' => false])
@@ -72,14 +63,14 @@ class LabelControllerTest extends TestCase
         $response->assertOk();
     }
 
-    public function test_not_edit_page_tasks_without_authorized()
+    public function testNotEditPageTasksWithoutAuthorized()
     {
         $response = $this->get(route('labels.edit', $this->label));
 
         $response->assertStatus(403);
     }
 
-    public function test_update_labels()
+    public function testUpdateLabels()
     {
         $response = $this->actingAs($this->user)
             ->withSession(['banned' => false])
@@ -90,7 +81,7 @@ class LabelControllerTest extends TestCase
         $this->assertDatabaseHas('labels', $this->data);
     }
 
-    public function test_not_update_labels_without_authorized()
+    public function testNotUpdateLabelsWithoutAuthorized()
     {
         $response = $this->put(route('labels.update', $this->label), $this->data);
 
@@ -99,7 +90,7 @@ class LabelControllerTest extends TestCase
         $this->assertDatabaseMissing('labels', $this->data);
     }
 
-    public function test_delete_labels()
+    public function testDeleteLabels()
     {
         $response = $this->actingAs($this->user)
             ->withSession(['banned' => false])

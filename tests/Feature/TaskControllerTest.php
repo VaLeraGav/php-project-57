@@ -27,14 +27,14 @@ class TaskControllerTest extends TestCase
         ]);
     }
 
-    public function test_access_to_the_tasks_page()
+    public function testAccessToTheTasksPage()
     {
         $response = $this->get(route('tasks.index'));
 
         $response->assertOk();
     }
 
-    public function test_store_tasks()
+    public function testStoreTasks()
     {
         $response = $this->actingAs($this->user)
             ->withSession(['banned' => false])
@@ -46,16 +46,7 @@ class TaskControllerTest extends TestCase
         $this->assertDatabaseHas('tasks', $this->data);
     }
 
-    public function test_not_create_store_tasks_without_authorized()
-    {
-        $response = $this->post(route('tasks.store'), $this->data);
-
-        $response->assertRedirect('tasks');
-
-        $this->assertDatabaseMissing('tasks', $this->data);
-    }
-
-    public function test_create_tasks()
+    public function testCreateTasks()
     {
         $response = $this->actingAs($this->user)
             ->get(route('tasks.create'));
@@ -63,14 +54,14 @@ class TaskControllerTest extends TestCase
         $response->assertOk();
     }
 
-    public function test_not_create_tasks_without_authorized()
+    public function testNotCreateTasksWithoutAuthorized()
     {
         $response = $this->get(route('tasks.create'));
 
         $response->assertStatus(403);
     }
 
-    public function test_edit_page_tasks()
+    public function testEditPageTasks()
     {
         $response = $this->actingAs($this->user)
             ->withSession(['banned' => false])
@@ -79,14 +70,14 @@ class TaskControllerTest extends TestCase
         $response->assertOk();
     }
 
-    public function test_not_edit_page_tasks_without_authorized()
+    public function testNotEditPageTasksWithoutAuthorized()
     {
         $response = $this->get(route('tasks.edit', $this->task));
 
         $response->assertStatus(403);
     }
 
-    public function test_update_tasks()
+    public function testUpdateTasks()
     {
         $response = $this->actingAs($this->user)
             ->withSession(['banned' => false])
@@ -97,16 +88,7 @@ class TaskControllerTest extends TestCase
         $this->assertDatabaseHas('tasks', $this->data);
     }
 
-    public function test_not_update_tasks_without_authorized()
-    {
-        $response = $this->put(route('tasks.update', $this->task), $this->data);
-
-        $response->assertRedirect('tasks');
-
-        $this->assertDatabaseMissing('tasks', $this->data);
-    }
-
-    public function test_delete_tasks()
+    public function testDeleteTasks()
     {
         $response = $this->actingAs($this->user)
             ->withSession(['banned' => false])
@@ -126,7 +108,7 @@ class TaskControllerTest extends TestCase
         );
     }
 
-    public function test_not_delete_task_without_creater()
+    public function testNotDeleteTaskWithoutCreater()
     {
         $responseUser1 = $this->actingAs($this->user)
             ->withSession(['banned' => false])

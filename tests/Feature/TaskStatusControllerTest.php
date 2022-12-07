@@ -20,14 +20,14 @@ class TaskStatusControllerTest extends TestCase
         $this->data = TaskStatus::factory()->make()->only(['name']);
     }
 
-    public function test_access_to_the_task_status_page()
+    public function testAccessToTheTaskStatusPage()
     {
         $response = $this->get(route('task_statuses.index'));
 
         $response->assertOk();
     }
 
-    public function test_store_task_status()
+    public function testStoreTaskStatus()
     {
         $response = $this->actingAs($this->user)
             ->withSession(['banned' => false])
@@ -39,16 +39,7 @@ class TaskStatusControllerTest extends TestCase
         $this->assertDatabaseHas('task_statuses', $this->data);
     }
 
-    public function test_not_create_store_task_status_without_authorized()
-    {
-        $response = $this->post(route('task_statuses.store'), $this->data);
-
-        $response->assertRedirect('task_statuses');
-
-        $this->assertDatabaseMissing('task_statuses', $this->data);
-    }
-
-    public function test_create_task_status()
+    public function testCreateTaskStatus()
     {
         $response = $this->actingAs($this->user)
             ->get(route('task_statuses.create'));
@@ -56,14 +47,14 @@ class TaskStatusControllerTest extends TestCase
         $response->assertOk();
     }
 
-    public function test_not_create_task_status_without_authorized()
+    public function testNotCreateTaskStatusWithoutAuthorized()
     {
         $response = $this->get(route('task_statuses.create'));
 
         $response->assertStatus(403);
     }
 
-    public function test_edit_page_task_status()
+    public function testEditPageTaskStatus()
     {
         $response = $this->actingAs($this->user)
             ->withSession(['banned' => false])
@@ -72,14 +63,14 @@ class TaskStatusControllerTest extends TestCase
         $response->assertOk();
     }
 
-    public function test_not_edit_page_tasks_without_authorized()
+    public function testNotEditPageTasksWithoutAuthorized()
     {
         $response = $this->get(route('task_statuses.edit', $this->taskStatus));
 
         $response->assertStatus(403);
     }
 
-    public function test_update_task_status()
+    public function testUpdateTaskStatus()
     {
         $response = $this->actingAs($this->user)
             ->withSession(['banned' => false])
@@ -90,16 +81,7 @@ class TaskStatusControllerTest extends TestCase
         $this->assertDatabaseHas('task_statuses', $this->data);
     }
 
-    public function test_not_update_task_status_without_authorized()
-    {
-        $response = $this->put(route('task_statuses.update', $this->taskStatus), $this->data);
-
-        $response->assertRedirect('task_statuses');
-
-        $this->assertDatabaseMissing('task_statuses', $this->data);
-    }
-
-    public function test_delete_task_status()
+    public function testDeleteTaskStatus()
     {
         $response = $this->actingAs($this->user)
             ->withSession(['banned' => false])

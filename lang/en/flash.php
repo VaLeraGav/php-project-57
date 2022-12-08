@@ -5,11 +5,13 @@ return [
         'added' => 'Label added successfully!',
         'edited' => 'Label edited successfully!',
         'deleted' => 'Label deleted successfully!',
+        'failed' => 'Failed to delete label!'
     ],
     'status' => [
         'added' => 'Status added successfully!',
         'edited' => 'Status edited successfully!',
         'deleted' => 'Status deleted successfully!',
+        'failed' => 'Failed to delete status!'
     ],
     'task' => [
         'added' => 'Task added successfully!',

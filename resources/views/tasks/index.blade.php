@@ -96,22 +96,22 @@
                                         </a>
                                     @endcan
                                     @can('delete', $task)
-                                        <a href="{{ route('tasks.destroy', $task->id) }}"
-                                           data-confirm="{{ __('tasks.Confirm deletion') }}" data-method="delete"
-                                           rel="nofollow"
-                                           class="btn btn-danger btn-sm text-red-600 hover:text-red-900">
-                                            {{ __('tasks.Delete') }}
-                                        </a>
-                                        {{--  <form action="{{ route('tasks.destroy', $task->id)}}"--}}
-                                        {{--        method="post" class=" float-left">--}}
-                                        {{--      @csrf--}}
-                                        {{--      @method('DELETE')--}}
-                                        {{--      <button type="submit"--}}
-                                        {{--              class="btn btn-danger btn-sm text-red-600 hover:text-red-900"--}}
-                                        {{--              onclick="{{ __('tasks.Confirm deletion') }}">--}}
-                                        {{--          {{  __('tasks.Delete') }}--}}
-                                        {{--      </button>--}}
-                                        {{--  </form>--}}
+                                        {{--  <a href="{{ route('tasks.destroy', $task->id) }}"--}}
+                                        {{--     data-confirm="{{ __('tasks.Confirm deletion') }}" data-method="delete"--}}
+                                        {{--     rel="nofollow"--}}
+                                        {{--     class="btn btn-danger btn-sm text-red-600 hover:text-red-900">--}}
+                                        {{--      {{ __('tasks.Delete') }}--}}
+                                        {{--  </a>--}}
+                                        <form action="{{ route('tasks.destroy', $task->id)}}"
+                                              method="post" class=" float-left">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                    class="btn btn-danger btn-sm text-red-600 hover:text-red-900"
+                                                    onclick="{{ __('tasks.Confirm deletion') }}">
+                                                {{  __('tasks.Delete') }}
+                                            </button>
+                                        </form>
                                     @endcan
                                 </td>
                             @endauth

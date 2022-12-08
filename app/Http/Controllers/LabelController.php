@@ -65,10 +65,9 @@ class LabelController extends Controller
 
     public function destroy(Label $label)
     {
-        if ($label) {
-            $label->delete();
-            flash(__('flash.label.delete'))->success();
-        }
+        $label->delete();
+
+        flash(__('flash.label.deleted'))->success();
         return redirect()->route('labels.index');
     }
 }

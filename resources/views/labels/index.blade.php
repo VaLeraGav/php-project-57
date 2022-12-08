@@ -53,7 +53,9 @@
                     </tbody>
                 @endif
             </table>
+
             <div class="mt-4 grid col-span-full">{{ $labels->links() }}</div>
+
         </div>
     </div>
 @endsection

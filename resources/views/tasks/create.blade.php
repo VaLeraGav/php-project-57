@@ -12,8 +12,7 @@
                 </div>
 
                 <div class="mt-2">
-                    {{-- {{ Form::text('name', '', ['class' => 'form-control rounded border-gray-300 w-1/3']) }}--}}
-                    <input class="rounded border-gray-300 w-1/3" name="name" type="text" id="name">
+                    {{ Form::text('name', '', ['class' => 'form-control rounded border-gray-300 w-1/3']) }}
                 </div>
                 <div class="d-block text-sm text-red-600 space-y-1">
                     @foreach ($errors->get('name') as $error)
@@ -22,11 +21,10 @@
                 </div>
 
                 <div class="mt-2">
-                    <label for="description">{{ __('tasks.Description') }}</label>
+                    {{ Form::label('description', __('tasks.Description')) }}
                 </div>
                 <div>
-                    <textarea class="rounded border-gray-300 w-1/3 h-32" cols="50" rows="10" name="description"
-                              id="description"></textarea>
+                    {{ Form::textarea('description', '', ['class' => 'rounded border-gray-300 w-1/3 h-32']) }}
                 </div>
                 <div class="d-block text-sm text-red-600 space-y-1">
                     @foreach ($errors->get('description') as $error)
@@ -35,7 +33,7 @@
                 </div>
 
                 <div class="mt-2">
-                    <label for="status_id">{{ __('tasks.Status') }}</label>
+                    {{ Form::label('status_id', __('tasks.Status')) }}
                 </div>
                 <div>
                     {{ Form::select('status_id', $taskStatuses, null, ['class' => 'form-control rounded border-gray-300 w-1/3', 'placeholder' => '----------']) }}
@@ -47,7 +45,7 @@
                 </div>
 
                 <div class="mt-2">
-                    <label for="assigned_to_id">{{ __('tasks.Performer') }}</label>
+                    {{ Form::label('assigned_to_id', __('tasks.Performer')) }}
                 </div>
                 <div>
                     {{ Form::select('assigned_to_id', $users, null, ['class' => 'form-control rounded border-gray-300 w-1/3', 'placeholder' => '----------']) }}
@@ -59,7 +57,7 @@
                 </div>
 
                 <div class="mt-2">
-                    <label for="labels">{{ __('tasks.Performer') }}</label>
+                    {{ Form::label('labels', __('tasks.Performer')) }}
                 </div>
                 <div>
                     {{ Form::select('labels[]', $labels, null, ['class' => 'form-control rounded border-gray-300 w-1/3 h-32', 'multiple' => 'multiple']) }}
@@ -69,6 +67,7 @@
                 </div>
             </div>
             {{ Form::close() }}
+
         </div>
     </div>
 @endsection

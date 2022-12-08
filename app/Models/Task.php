@@ -29,4 +29,9 @@ class Task extends Model
     {
         return $this->belongsToMany(Label::class);
     }
+
+    public function creator(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'created_by_id');
+    }
 }

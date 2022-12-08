@@ -5,7 +5,7 @@
         <div class="grid col-span-full">
             <h2 class="mb-5">
                 {{ $task->name }} <a
-                    href="{{ route('tasks.edit', $task) }}">⚙</a>
+                    href="{{ route('tasks.edit', $task->id) }}">⚙</a>
             </h2>
             <p><span class="font-black">{{ __('tasks.Name') }}:</span> {{ $task->name }}</p>
             <p><span class="font-black">{{ __('tasks.Status') }}:</span> {{ $task->status->name }}</p>

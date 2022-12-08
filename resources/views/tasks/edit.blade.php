@@ -7,12 +7,12 @@
 
             {{ Form::open(['url' => route('tasks.update', ['task' => $task]), 'method' => 'PUT', 'class' => 'w-50']) }}
             <div class="flex flex-col">
+
                 <div>
-                    <label for="name">{{ __('tasks.Name') }}</label>
+                    {{ Form::label('name', __('tasks.Name')) }}
                 </div>
                 <div class="mt-2">
-                    <input class="rounded border-gray-300 w-1/3" name="name" type="text" id="name"
-                           value="{{ $task->name }}">
+                    {{ Form::text('name', $task->name, ['class' => 'form-control rounded border-gray-300 w-1/3']) }}
                 </div>
                 <div class="d-block text-sm text-red-600 space-y-1">
                     @foreach ($errors->get('status_id') as $error)
@@ -21,11 +21,10 @@
                 </div>
 
                 <div class="mt-2">
-                    <label for="description">{{ __('tasks.Description') }}</label>
+                    {{ Form::label('description', __('tasks.Description')) }}
                 </div>
                 <div>
-                    <textarea class="rounded border-gray-300 w-1/3 h-32" cols="50" rows="10" name="description"
-                              id="description">{{ $task->description }}</textarea>
+                    {{ Form::textarea('description', $task->description, ['class' => 'rounded border-gray-300 w-1/3 h-32']) }}
                 </div>
                 <div class="d-block text-sm text-red-600 space-y-1">
                     @foreach ($errors->get('description') as $error)
@@ -34,7 +33,7 @@
                 </div>
 
                 <div class="mt-2">
-                    <label for="status_id">{{ __('tasks.Status') }}</label>
+                    {{ Form::label('status_id', __('tasks.Status')) }}
                 </div>
                 <div>
                     {{ Form::select('status_id', $taskStatus, $task->status_id, ['class' => 'form-control rounded border-gray-300 w-1/3', 'placeholder' => '----------']) }}
@@ -46,7 +45,7 @@
                 </div>
 
                 <div class="mt-2">
-                    <label for="assigned_to_id">{{ __('tasks.Performer') }}</label>
+                    {{ Form::label('assigned_to_id', __('tasks.Performer')) }}
                 </div>
                 <div>
                     {{ Form::select('assigned_to_id', $users, $task->assigned_to_id, ['class' => 'form-control rounded border-gray-300 w-1/3', 'placeholder' => '----------']) }}
@@ -58,7 +57,7 @@
                 </div>
 
                 <div class="mt-2">
-                    <label for="labels">{{ __('tasks.Performer') }}</label>
+                    {{ Form::label('labels', __('tasks.Performer')) }}
                 </div>
                 <div>
                     {{ Form::select('labels[]', $labels, $task->labels, ['class' => 'form-control rounded border-gray-300 w-1/3 h-32', 'multiple' => 'multiple']) }}
@@ -68,6 +67,7 @@
                 </div>
             </div>
             {{ Form::close() }}
+
         </div>
     </div>
 @endsection

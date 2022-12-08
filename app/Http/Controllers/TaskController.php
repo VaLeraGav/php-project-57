@@ -47,9 +47,6 @@ class TaskController extends Controller
 
     public function show(Task $task)
     {
-        if (Auth::guest()) {
-            return redirect()->route('tasks.index');
-        }
         return view('tasks.show', compact('task'));
     }
 
@@ -103,11 +100,11 @@ class TaskController extends Controller
 
     public function destroy(Task $task)
     {
-        if (Auth::id() === $task->created_by_id) {
-            $task->labels()->detach();
-            $task->delete();
-            flash(__('flash.task.delete'))->success();
-        }
-        return redirect()->route('tasks.index');
+        $task->labels()->detach();
+        $task->delete();
+
+        flash(__('flash.task.deleted'))->success();
+        return redirect()
+            ->route('tasks.index');
     }
 }

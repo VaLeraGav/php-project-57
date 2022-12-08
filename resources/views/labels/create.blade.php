@@ -5,45 +5,46 @@
         <div class="grid col-span-full">
             <h1 class="mb-5">{{ __('labels.Create a label') }}</h1>
 
-            <form method="POST" action="{{ route('labels.index') }}" accept-charset="UTF-8" class="w-50">
-                @csrf
-                <div class="flex flex-col">
-                    <div>
-                        <label for="name">{{ __('labels.Name') }}</label>
-                        {{-- {{ Form::label('name', 'Имя') }} --}}
-                    </div>
-                    <div class="mt-2">
-                        <input class="rounded border-gray-300 w-1/3" name="name" type="text" id="name">
-                        @if ($errors->has('name'))
-                            <div class="d-block text-sm text-red-600 space-y-1">
-                                @foreach ($errors->get('name') as $error)
-                                    {{ $error }}
-                                @endforeach
-                            </div>
-                        @endif
-                    </div>
+            {{ Form::open(['url' => route('labels.store'), 'method' => 'POST', 'class' => 'w-50']) }}
+            @csrf
+            <div class="flex flex-col">
 
-                    <div class="mt-2">
-                        <label for="description">{{ __('labels.Description') }}</label>
-                    </div>
-                    <div class="mt-2">
-                    <textarea class="rounded border-gray-300 w-1/3 h-32" name="description" cols="50" rows="10"
-                              id="description"></textarea>
-                        @if ($errors->has('description'))
-                            <div class="d-block text-sm text-red-600 space-y-1">
-                                @foreach ($errors->get('description') as $error)
-                                    {{ $error }}
-                                @endforeach
-                            </div>
-                        @endif
-                    </div>
-                    <div class="mt-2">
-                        <input class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                               type="submit"
-                               value={{ __('labels.Create') }}>
-                    </div>
+                <div>
+                    {{ Form::label('name',  __('labels.Name')) }}
                 </div>
-            </form>
+
+                <div class="mt-2">
+                    {{ Form::text('name', '', ['class' => 'form-control rounded border-gray-300 w-1/3']) }}
+                    @if ($errors->has('name'))
+                        <div class="d-block text-sm text-red-600 space-y-1">
+                            @foreach ($errors->get('name') as $error)
+                                {{ $error }}
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
+
+                <div class="mt-2">
+                    {{ Form::label('description', __('labels.Description')) }}
+                </div>
+                <div class="mt-2">
+                    {{ Form::textarea('description', '', ['class' => 'form-control rounded border-gray-300 w-1/3 h-32', 'cols' => '50', 'rows' => '10']) }}
+                    @if ($errors->has('description'))
+                        <div class="d-block text-sm text-red-600 space-y-1">
+                            @foreach ($errors->get('description') as $error)
+                                {{ $error }}
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
+
+                <div class="mt-2">
+                    {{ Form::submit(__('labels.Create'), ['class' => 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded']) }}
+                </div>
+
+            </div>
+            {{ Form::close() }}
+
         </div>
     </div>
 @endsection

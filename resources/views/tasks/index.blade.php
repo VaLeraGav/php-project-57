@@ -23,7 +23,6 @@
                                type="submit" value="{{  __('tasks.Apply') }}">
                     </div>
                 </div>
-                </form>
                 {{Form::close()}}
 
                 <div class="ml-auto">
@@ -69,12 +68,6 @@
                             <td>{{ $task->created_at->format('d.m.Y') }}</td>
                             @auth
                                 <td>
-                                    @can('update', $task)
-                                        <a href="{{ route('tasks.edit', $task->id) }}"
-                                           class="text-blue-600 hover:text-blue-900">
-                                            {{ __('tasks.Edit') }}
-                                        </a>
-                                    @endcan
                                     @can('delete', $task)
                                           <a href="{{ route('tasks.destroy', $task->id) }}"
                                              data-confirm="{{ __('tasks.Confirm deletion') }}" data-method="delete"
@@ -82,6 +75,12 @@
                                              class="btn btn-danger btn-sm text-red-600 hover:text-red-900">
                                               {{ __('tasks.Delete') }}
                                           </a>
+                                    @endcan
+                                    @can('update', $task)
+                                        <a href="{{ route('tasks.edit', $task->id) }}"
+                                           class="text-blue-600 hover:text-blue-900">
+                                            {{ __('tasks.Edit') }}
+                                        </a>
                                     @endcan
                                 </td>
                             @endauth

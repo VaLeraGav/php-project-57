@@ -33,32 +33,18 @@
                             <td>{{ $status->name }}</td>
                             <td>{{ $status->created_at->format('d.m.Y') }}</td>
                             @auth()
-                                <td>
-                                    <form action="{{ route('task_statuses.destroy', ['task_status' => $status->id]) }}"
-                                          method="post" class=" float-left">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                                class="btn btn-danger btn-sm text-red-600 hover:text-red-900"
-                                                onclick="return confirm( {{ __('task_statuses.Confirm the deletion') }} )">
-                                            {{ __('task_statuses.Delete') }}
-                                        </button>
-                                    </form>
-                                    <a class="text-blue-600 hover:text-blue-900"
-                                       href="{{ route('task_statuses.edit', $status->id) }}">{{ __('task_statuses.Edit') }}</a>
-                                </td>
-                                {{--  <td>--}}
-                                {{--      <a class="text-red-600 hover:text-red-900"--}}
-                                {{--         rel="nofollow" data-method="delete"--}}
-                                {{--         data-confirm="{{ __('task_statuses.Confirm the deletion') }}"--}}
-                                {{--         href="{{ route('task_statuses.destroy', $status->id) }}">--}}
-                                {{--          {{ __('task_statuses.Delete') }}--}}
-                                {{--      </a>--}}
-                                {{--      <a class="text-blue-600 hover:text-blue-900"--}}
-                                {{--         href="{{ route("task_statuses.edit", $status->id) }}">--}}
-                                {{--          {{ __('task_statuses.Edit') }}--}}
-                                {{--      </a>--}}
-                                {{--  </td>--}}
+                                  <td>
+                                      <a class="text-red-600 hover:text-red-900"
+                                         rel="nofollow" data-method="delete"
+                                         data-confirm="{{ __('task_statuses.Confirm the deletion') }}"
+                                         href="{{ route('task_statuses.destroy', $status->id) }}">
+                                          {{ __('task_statuses.Delete') }}
+                                      </a>
+                                      <a class="text-blue-600 hover:text-blue-900"
+                                         href="{{ route("task_statuses.edit", $status->id) }}">
+                                          {{ __('task_statuses.Edit') }}
+                                      </a>
+                                  </td>
                             @endauth
                         </tr>
                     @endforeach

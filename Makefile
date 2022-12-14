@@ -34,7 +34,7 @@ log:
 	tail -f storage/logs/laravel.log
 
 lint:
-	composer phpcs -- --standard=PSR12 app routes
+	composer phpcs -- --standard=PSR12 app routes database/seeders
 
 lint-fix:
 	composer phpcbf -- --standard=PSR12 app routes tests

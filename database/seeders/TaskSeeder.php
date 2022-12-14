@@ -17,7 +17,6 @@ class TaskSeeder extends Seeder
     public function run()
     {
         if (DB::table('tasks')->count() === 0) {
-
             DB::table('tasks')->insert([
                 [
                     'status_id' => 1,

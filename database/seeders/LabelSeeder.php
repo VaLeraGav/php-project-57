@@ -17,7 +17,6 @@ class LabelSeeder extends Seeder
     public function run()
     {
         if (DB::table('labels')->count() === 0) {
-
             DB::table('labels')->insert([
                 [
                     'name' => 'ошибка',

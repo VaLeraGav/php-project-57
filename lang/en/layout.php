@@ -11,4 +11,3 @@ return [
     'Greetings from Hexlet' => 'Greetings from Hexlet!',
     'This is a simple task manager on Laravel' => 'This is a simple task manager on Laravel',
 ];
-

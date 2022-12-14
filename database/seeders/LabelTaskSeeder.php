@@ -16,7 +16,6 @@ class LabelTaskSeeder extends Seeder
     public function run()
     {
         if (DB::table('label_task')->count() === 0) {
-
             DB::table('label_task')->insert([
                 [
                     'task_id' => 1,

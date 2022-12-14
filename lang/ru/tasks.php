@@ -15,5 +15,6 @@ return [
     'Confirm deletion' => 'Подтвердите удаление',
     'Description' => 'Описание',
     'Tags' => 'Метки',
-    'Create' => 'Создать'
+    'Create' => 'Создать',
+    'Update' => 'Обновить'
 ];

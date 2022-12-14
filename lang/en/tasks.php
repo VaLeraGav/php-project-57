@@ -15,5 +15,6 @@ return [
     'Confirm deletion' => 'Confirm deletion',
     'Description' => 'Description',
     'Tags' => 'Tags',
-    'Create' => 'Create'
+    'Create' => 'Create',
+    'Update' => 'Update'
 ];

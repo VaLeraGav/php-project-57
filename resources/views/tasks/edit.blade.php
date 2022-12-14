@@ -63,7 +63,7 @@
                     {{ Form::select('labels[]', $labels, $task->labels, ['class' => 'form-control rounded border-gray-300 w-1/3 h-32', 'multiple' => 'multiple']) }}
                 </div>
                 <div class="mt-2">
-                    {{ Form::submit( __('tasks.Create'), ['class' => 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded']) }}
+                    {{ Form::submit( __('tasks.Update'), ['class' => 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded']) }}
                 </div>
             </div>
             {{ Form::close() }}

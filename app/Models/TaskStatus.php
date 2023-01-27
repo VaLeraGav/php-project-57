@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * @property TaskStatus|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|mixed $taskStatus
+ */
 class TaskStatus extends Model
 {
     use HasFactory;

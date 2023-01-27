@@ -18,6 +18,7 @@ class TaskControllerTest extends TestCase
         parent::setUp();
         $this->user = User::factory()->create();
         TaskStatus::factory()->create();
+        /** @var Task $task */
         $this->task = Task::factory()->create();
         $this->data = Task::factory()->make()->only([
             'name',

@@ -7,7 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * @property TaskStatus|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|mixed $taskStatus
+ * App\Models\TaskStatus
+ *
+ * @property int $id
+ * @property string $name
+ * @property \Illuminate\Support\Carbon $updated_at
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Task[] $tasks
+ * @property-read int|null $tasks_count
  */
 class TaskStatus extends Model
 {

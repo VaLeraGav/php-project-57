@@ -9,15 +9,11 @@ use App\Models\User;
 class LabelControllerTest extends TestCase
 {
     private User $user;
-    // private Label $label;
-    // private array $data;
 
     protected function setUp(): void
     {
         parent::setUp();
         $this->user = User::factory()->create();
-        // $this->label = Label::factory()->create();
-        // $this->data = Label::factory()->make()->only(['name', 'description']);
     }
 
     public function testAccessToTheLabelsPage()
@@ -29,7 +25,6 @@ class LabelControllerTest extends TestCase
 
     public function testStoreLabels()
     {
-        /** @var array $data */
         $data = Label::factory()
             ->make()
             ->only(['name', 'description']);
@@ -82,7 +77,6 @@ class LabelControllerTest extends TestCase
     {
         $label = Label::factory()->create();
 
-        /** @var array $data */
         $data = Label::factory()->make()
             ->only(['name', 'description']);
 
@@ -99,7 +93,6 @@ class LabelControllerTest extends TestCase
     {
         $label = Label::factory()->create();
 
-        /** @var array $data */
         $data = Label::factory()->make()
             ->only(['name', 'description']);
 

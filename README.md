@@ -24,7 +24,7 @@ It allows you to create tasks, statuses and shortcuts, as well as assign perform
 * PHP ^8.1
 * Composer 2
 * Node.js & npm
-* SQLite for local
+* SQLite3
 
 ## Setup
 
@@ -34,8 +34,4 @@ $ git clone https://github.com/VaLeraGav/php-project-57.git
 $ cd php-project-57
 $ make setup
 ```
-
-Fix:
-
-- final mistakes
 

@@ -19,7 +19,7 @@ class LabelController extends Controller
 
     public function create()
     {
-        $this->authorize('create',[self::class]);
+        $this->authorize('create', [self::class]);
 
         $label = new Label();
         return view('labels.create', compact('label'));
@@ -43,7 +43,7 @@ class LabelController extends Controller
 
     public function edit(Label $label)
     {
-        $this->authorize('update',[self::class]);
+        $this->authorize('update', [self::class]);
 
         return view('labels.edit', compact('label'));
     }
@@ -65,7 +65,7 @@ class LabelController extends Controller
 
     public function destroy(Label $label)
     {
-        $this->authorize('delete',[self::class]);
+        $this->authorize('delete', [self::class]);
 
         if ($label->tasks()->exists()) {
             flash(__('flash.label.failed'))->error();

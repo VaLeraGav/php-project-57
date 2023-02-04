@@ -18,9 +18,7 @@ class TaskStatusController extends Controller
 
     public function create()
     {
-        if (Auth::guest()) {
-            return abort(403);
-        }
+        $this->authorize('create', [self::class]);
 
         $taskStatus = new TaskStatus();
         return view('task_statuses.create', compact('taskStatus'));
@@ -44,9 +42,8 @@ class TaskStatusController extends Controller
 
     public function edit(TaskStatus $taskStatus)
     {
-        if (Auth::guest()) {
-            return abort(403);
-        }
+        $this->authorize('update', [self::class]);
+
         return view('task_statuses.edit', compact('taskStatus'));
     }
 

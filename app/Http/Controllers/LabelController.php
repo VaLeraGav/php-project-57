@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreLabelRequest;
 use App\Http\Requests\UpdateLabelRequest;
 use App\Models\Label;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class LabelController extends Controller
 {
@@ -17,9 +19,8 @@ class LabelController extends Controller
 
     public function create()
     {
-        if (Auth::guest()) {
-            return abort(403);
-        }
+        $this->authorize('create',[self::class]);
+
         $label = new Label();
         return view('labels.create', compact('label'));
     }
@@ -42,9 +43,8 @@ class LabelController extends Controller
 
     public function edit(Label $label)
     {
-        if (Auth::guest()) {
-            return abort(403);
-        }
+        $this->authorize('update',[self::class]);
+
         return view('labels.edit', compact('label'));
     }
 
@@ -65,9 +65,11 @@ class LabelController extends Controller
 
     public function destroy(Label $label)
     {
+        $this->authorize('delete',[self::class]);
+
         if ($label->tasks()->exists()) {
             flash(__('flash.label.failed'))->error();
-            return redirect()->route('task_statuses.index');
+            return redirect()->route('labels.index');
         }
 
         $label->delete();

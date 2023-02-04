@@ -115,4 +115,14 @@ class LabelControllerTest extends TestCase
 
         $this->assertDatabaseMissing('labels', $label->only(['name']));
     }
+
+    public function testNotDeleteLabels()
+    {
+        $label = Label::factory()->create();
+
+        $response = $this->delete(route('labels.destroy', $label));
+
+        $response->assertStatus(403);
+
+    }
 }

@@ -34,9 +34,7 @@ class TaskController extends Controller
 
     public function create()
     {
-        if (Auth::guest()) {
-            return abort(403);
-        }
+        $this->authorize('create', [self::class]);
 
         $taskStatuses = TaskStatus::pluck('name', 'id')->all();
         $users = User::pluck('name', 'id')->all();
@@ -70,9 +68,7 @@ class TaskController extends Controller
 
     public function edit(Task $task)
     {
-        if (Auth::guest()) {
-            abort(403);
-        }
+        $this->authorize('update', [self::class]);
 
         $taskStatus = TaskStatus::pluck('name', 'id')->all();
         $users = User::pluck('name', 'id')->all();

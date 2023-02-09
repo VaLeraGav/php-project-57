@@ -96,8 +96,6 @@ class TaskController extends Controller
 
     public function destroy(Task $task)
     {
-        $this->authorize('delete', [self::class]);
-
         $task->labels()->detach();
         $task->delete();
 

@@ -138,7 +138,7 @@ class TaskControllerTest extends TestCase
             ->withSession(['banned' => false])
             ->delete(route('tasks.destroy', $task));
 
-        $responseUser2->assertRedirect();
+        $responseUser2->assertRedirect('tasks');
 
         $this->assertDatabaseHas('tasks', $data);
     }

@@ -12,7 +12,7 @@ class ProfileController extends Controller
     /**
      * Delete the user's account.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Request $request)

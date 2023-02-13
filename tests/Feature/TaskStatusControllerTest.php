@@ -10,7 +10,7 @@ use App\Models\User;
 class TaskStatusControllerTest extends TestCase
 {
     private User $user;
-    private TaskStatus $task;
+    private TaskStatus $taskStatus;
     private array $data;
 
     protected function setUp(): void

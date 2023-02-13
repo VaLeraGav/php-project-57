@@ -35,18 +35,15 @@
                             <td>{{ $label->created_at->format('d.m.Y') }}</td>
                             @auth()
                                 <td>
-                                    @can('delete', $label)
-                                        <a class="text-red-600 hover:text-red-900" rel="nofollow" data-method="delete"
-                                           data-confirm="{{ __('labels.Confirm the deletion') }}"
-                                           href="{{ route('labels.destroy', $label) }}">
-                                            {{ __('labels.Delete') }}
-                                        </a>
-                                    @endcan
-                                    @can('update', $label)
-                                        <a class="text-blue-600 hover:text-blue-900"
-                                           href="{{ route('labels.edit', $label->id) }}">{{ __('labels.Edit') }}
-                                        </a>
-                                    @endcan
+                                    <a class="text-red-600 hover:text-red-900" rel="nofollow" data-method="delete"
+                                       data-confirm="{{ __('labels.Confirm the deletion') }}"
+                                       href="{{ route('labels.destroy', $label) }}">
+                                        {{ __('labels.Delete') }}
+                                    </a>
+
+                                    <a class="text-blue-600 hover:text-blue-900"
+                                       href="{{ route('labels.edit', $label->id) }}">{{ __('labels.Edit') }}
+                                    </a>
                                 </td>
                             @endauth
                         </tr>

@@ -12,7 +12,7 @@ class TaskStatusFactory extends Factory
      *
      * @var string
      */
-    protected $model = TaskStatus::class;
+    // protected $model = TaskStatus::class;
 
     /**
      * Define the model's default state.

@@ -15,6 +15,11 @@ use Spatie\QueryBuilder\QueryBuilder;
 
 class TaskController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Task::class);
+    }
+
     public function index(Request $request)
     {
         $users = User::pluck('name', 'id')->all();
@@ -34,7 +39,7 @@ class TaskController extends Controller
 
     public function create()
     {
-        $this->authorize('create', [self::class]);
+        // $this->authorize('create', [self::class]);
 
         $taskStatuses = TaskStatus::pluck('name', 'id')->all();
         $users = User::pluck('name', 'id')->all();
@@ -50,9 +55,9 @@ class TaskController extends Controller
 
     public function store(StoreTaskRequest $request)
     {
-        if (Auth::guest()) {
-            return redirect()->route('tasks.index');
-        }
+//        if (Auth::guest()) {
+//            return redirect()->route('tasks.index');
+//        }
 
         $data = $request->validated();
         $user = Auth::user();
@@ -68,7 +73,7 @@ class TaskController extends Controller
 
     public function edit(Task $task)
     {
-        $this->authorize('update', [self::class]);
+       // $this->authorize('update', [self::class]);
 
         $taskStatus = TaskStatus::pluck('name', 'id')->all();
         $users = User::pluck('name', 'id')->all();
@@ -79,9 +84,9 @@ class TaskController extends Controller
 
     public function update(UpdateTaskRequest $request, Task $task)
     {
-        if (Auth::guest()) {
-            return redirect()->route('tasks.index');
-        }
+//        if (Auth::guest()) {
+//            return redirect()->route('tasks.index');
+//        }
 
         $data = $request->validated();
         $task->update($data);

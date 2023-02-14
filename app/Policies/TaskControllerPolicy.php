@@ -41,7 +41,7 @@ class TaskControllerPolicy
      */
     public function create()
     {
-        return Auth::check();
+        return true;
     }
 
     /**
@@ -51,7 +51,7 @@ class TaskControllerPolicy
      */
     public function update()
     {
-        return Auth::check();
+        return true;
     }
 
     /**

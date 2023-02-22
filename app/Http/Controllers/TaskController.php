@@ -32,7 +32,7 @@ class TaskController extends Controller
             ])
             ->orderBy('id', 'asc')
             ->paginate(10);
-        $filter = $request->filter;
+        $filter = $request->get('filter');
 
         return view('tasks.index', compact('tasks', 'users', 'taskStatuses', 'filter'));
     }

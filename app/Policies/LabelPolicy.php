@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Auth;
 
-class LabelControllerPolicy
+class LabelPolicy
 {
     use HandlesAuthorization;
 
@@ -41,7 +41,7 @@ class LabelControllerPolicy
      */
     public function create()
     {
-        return Auth::check();
+        return true;
     }
 
     /**
@@ -51,7 +51,7 @@ class LabelControllerPolicy
      */
     public function update()
     {
-        return Auth::check();
+        return  true;
     }
 
     /**
@@ -61,7 +61,7 @@ class LabelControllerPolicy
      */
     public function delete()
     {
-        return Auth::check();
+        return true;
     }
 
     /**

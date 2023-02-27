@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Auth;
 
-class TaskStatusControllerPolicy
+class TaskStatusPolicy
 {
     use HandlesAuthorization;
 
@@ -41,7 +41,7 @@ class TaskStatusControllerPolicy
      */
     public function create()
     {
-        return Auth::check();
+        return true;
     }
 
     /**
@@ -51,7 +51,7 @@ class TaskStatusControllerPolicy
      */
     public function update()
     {
-        return Auth::check();
+        return true;
     }
 
     /**
@@ -61,7 +61,7 @@ class TaskStatusControllerPolicy
      */
     public function delete()
     {
-        return Auth::check();
+        return true;
     }
 
     /**

@@ -11,6 +11,13 @@ use Illuminate\Support\Facades\Gate;
 
 class LabelController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Label::class, 'label', [
+            'except' => ['index', 'update']
+        ]);
+    }
+
     public function index()
     {
         $labels = Label::paginate(10);
@@ -19,18 +26,12 @@ class LabelController extends Controller
 
     public function create()
     {
-        $this->authorize('create', [self::class]);
-
         $label = new Label();
         return view('labels.create', compact('label'));
     }
 
     public function store(StoreLabelRequest $request)
     {
-        if (Auth::guest()) {
-            return redirect()->route('labels.index');
-        }
-
         $data = $request->validated();
         $label = new Label();
         $label->fill($data);
@@ -43,8 +44,6 @@ class LabelController extends Controller
 
     public function edit(Label $label)
     {
-        $this->authorize('update', [self::class]);
-
         return view('labels.edit', compact('label'));
     }
 
@@ -65,8 +64,6 @@ class LabelController extends Controller
 
     public function destroy(Label $label)
     {
-        $this->authorize('delete', [self::class]);
-
         if ($label->tasks()->exists()) {
             flash(__('flash.label.failed'))->error();
             return redirect()->route('labels.index');

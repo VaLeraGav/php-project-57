@@ -8,10 +8,7 @@
 The fourth project of four, within the framework of the profession of a PHP programmer on
 Laravel [Hexlet](https://ru.hexlet.io/professions/php).
 
-Демонстрационный проект:
-https://php-task-manager-ru.hexlet.app/
-
-проект: https://php-project-57-production-dda7.up.railway.app/
+Show the project: https://php-project-57-production-dda7.up.railway.app/
 
 ## Project Description
 

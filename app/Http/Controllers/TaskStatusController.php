@@ -6,7 +6,6 @@ use App\Http\Requests\StoreTaskStatusRequest;
 use App\Http\Requests\UpdateTaskStatusRequest;
 use App\Models\TaskStatus;
 
-
 class TaskStatusController extends Controller
 {
     public function __construct()

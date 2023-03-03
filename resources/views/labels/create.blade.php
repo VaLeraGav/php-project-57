@@ -8,11 +8,9 @@
             {{ Form::open(['url' => route('labels.store'), 'method' => 'POST', 'class' => 'w-50']) }}
             @csrf
             <div class="flex flex-col">
-
                 <div>
                     {{ Form::label('name',  __('labels.Name')) }}
                 </div>
-
                 <div class="mt-2">
                     {{ Form::text('name', '', ['class' => 'form-control rounded border-gray-300 w-1/3']) }}
                     @if ($errors->has('name'))

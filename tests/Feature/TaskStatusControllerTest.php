@@ -10,15 +10,11 @@ use App\Models\User;
 class TaskStatusControllerTest extends TestCase
 {
     private User $user;
-    // private TaskStatus $taskStatus;
-    // private array $data;
 
     protected function setUp(): void
     {
         parent::setUp();
         $this->user = User::factory()->create();
-        // $this->data = TaskStatus::factory()->make()->only(['name']);
-        // $this->taskStatus = TaskStatus::factory()->create();
     }
 
     public function testAccessToTheTaskStatusPage()

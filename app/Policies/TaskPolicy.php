@@ -5,7 +5,6 @@ namespace App\Policies;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Illuminate\Support\Facades\Auth;
 
 class TaskPolicy
 {
@@ -14,7 +13,7 @@ class TaskPolicy
     /**
      * Determine whether the user can view any models.
      *
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @return bool
      */
     public function viewAny()
     {
@@ -24,7 +23,7 @@ class TaskPolicy
     /**
      * Determine whether the user can view the model.
      *
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @return bool
      */
     public function view()
     {
@@ -34,7 +33,7 @@ class TaskPolicy
     /**
      * Determine whether the user can create models.
      *
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @return bool
      */
     public function create()
     {
@@ -44,7 +43,7 @@ class TaskPolicy
     /**
      * Determine whether the user can update the model.
      *
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @return bool
      */
     public function update()
     {
@@ -54,9 +53,7 @@ class TaskPolicy
     /**
      * Determine whether the user can delete the model.
      *
-     * @param \App\Models\User $user
-     * @param \App\Models\Task $task
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @return bool
      */
     public function delete(User $user, Task $task)
     {
@@ -66,11 +63,9 @@ class TaskPolicy
     /**
      * Determine whether the user can restore the model.
      *
-     * @param \App\Models\User $user
-     * @param \App\Models\Task $task
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @return bool
      */
-    public function restore(User $user, Task $task)
+    public function restore()
     {
         return false;
     }
@@ -78,11 +73,9 @@ class TaskPolicy
     /**
      * Determine whether the user can permanently delete the model.
      *
-     * @param \App\Models\User $user
-     * @param \App\Models\Task $task
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @return bool
      */
-    public function forceDelete(User $user, Task $task)
+    public function forceDelete()
     {
         return false;
     }

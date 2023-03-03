@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTaskStatusRequest;
 use App\Http\Requests\UpdateTaskStatusRequest;
-use Illuminate\Http\Request;
 use App\Models\TaskStatus;
-use Illuminate\Support\Facades\Auth;
+
 
 class TaskStatusController extends Controller
 {

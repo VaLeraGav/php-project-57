@@ -2,10 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\Label;
-use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Illuminate\Support\Facades\Auth;
 
 class LabelPolicy
 {
@@ -14,10 +11,9 @@ class LabelPolicy
     /**
      * Determine whether the user can view any models.
      *
-     * @param \App\Models\User $user
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @return bool
      */
-    public function viewAny(User $user)
+    public function viewAny()
     {
         return true;
     }
@@ -25,11 +21,9 @@ class LabelPolicy
     /**
      * Determine whether the user can view the model.
      *
-     * @param \App\Models\User $user
-     * @param \App\Models\Label $label
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @return bool
      */
-    public function view(User $user, Label $label)
+    public function view()
     {
         return true;
     }
@@ -37,7 +31,7 @@ class LabelPolicy
     /**
      * Determine whether the user can create models.
      *
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @return bool
      */
     public function create()
     {
@@ -47,7 +41,7 @@ class LabelPolicy
     /**
      * Determine whether the user can update the model.
      *
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @return bool
      */
     public function update()
     {
@@ -57,7 +51,7 @@ class LabelPolicy
     /**
      * Determine whether the user can delete the model.
      *
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @return bool
      */
     public function delete()
     {
@@ -67,11 +61,9 @@ class LabelPolicy
     /**
      * Determine whether the user can restore the model.
      *
-     * @param \App\Models\User $user
-     * @param \App\Models\Label $label
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @return bool
      */
-    public function restore(User $user, Label $label)
+    public function restore()
     {
         return false;
     }
@@ -79,11 +71,9 @@ class LabelPolicy
     /**
      * Determine whether the user can permanently delete the model.
      *
-     * @param \App\Models\User $user
-     * @param \App\Models\Label $label
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @return bool
      */
-    public function forceDelete(User $user, Label $label)
+    public function forceDelete()
     {
         return false;
     }

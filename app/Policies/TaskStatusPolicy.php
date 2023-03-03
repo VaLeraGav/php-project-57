@@ -5,7 +5,6 @@ namespace App\Policies;
 use App\Models\TaskStatus;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Illuminate\Support\Facades\Auth;
 
 class TaskStatusPolicy
 {
@@ -14,10 +13,9 @@ class TaskStatusPolicy
     /**
      * Determine whether the user can view any models.
      *
-     * @param \App\Models\User $user
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @return bool
      */
-    public function viewAny(User $user)
+    public function viewAny()
     {
         return true;
     }
@@ -25,11 +23,9 @@ class TaskStatusPolicy
     /**
      * Determine whether the user can view the model.
      *
-     * @param \App\Models\User $user
-     * @param \App\Models\TaskStatus $taskStatus
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @return bool
      */
-    public function view(User $user, TaskStatus $taskStatus)
+    public function view()
     {
         return true;
     }
@@ -37,7 +33,7 @@ class TaskStatusPolicy
     /**
      * Determine whether the user can create models.
      *
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @return bool
      */
     public function create()
     {
@@ -47,7 +43,7 @@ class TaskStatusPolicy
     /**
      * Determine whether the user can update the model.
      *
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @return bool
      */
     public function update()
     {
@@ -57,7 +53,7 @@ class TaskStatusPolicy
     /**
      * Determine whether the user can delete the model.
      *
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @return bool
      */
     public function delete()
     {
@@ -67,9 +63,7 @@ class TaskStatusPolicy
     /**
      * Determine whether the user can restore the model.
      *
-     * @param \App\Models\User $user
-     * @param \App\Models\TaskStatus $taskStatus
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @return bool
      */
     public function restore(User $user, TaskStatus $taskStatus)
     {
@@ -79,9 +73,7 @@ class TaskStatusPolicy
     /**
      * Determine whether the user can permanently delete the model.
      *
-     * @param \App\Models\User $user
-     * @param \App\Models\TaskStatus $taskStatus
-     * @return \Illuminate\Auth\Access\Response|bool
+     * @return bool
      */
     public function forceDelete(User $user, TaskStatus $taskStatus)
     {

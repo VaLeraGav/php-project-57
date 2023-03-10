@@ -15,6 +15,11 @@ use Spatie\QueryBuilder\QueryBuilder;
 
 class TaskController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Task::class, 'task');
+    }
+
     public function index(Request $request)
     {
         $users = User::pluck('name', 'id')->all();
@@ -45,17 +50,8 @@ class TaskController extends Controller
         return view('tasks.create', compact('taskStatuses', 'users', 'labels'));
     }
 
-    public function show(Task $task)
-    {
-        return view('tasks.show', compact('task'));
-    }
-
     public function store(StoreTaskRequest $request)
     {
-        if (Auth::guest()) {
-            return redirect()->route('tasks.index');
-        }
-
         $data = $request->validated();
         $user = Auth::user();
 
@@ -68,12 +64,13 @@ class TaskController extends Controller
             ->route('tasks.index');
     }
 
+    public function show(Task $task)
+    {
+        return view('tasks.show', compact('task'));
+    }
+
     public function edit(Task $task)
     {
-        if (Auth::guest()) {
-            abort(403);
-        }
-
         $taskStatus = TaskStatus::pluck('name', 'id')->all();
         $users = User::pluck('name', 'id')->all();
         $labels = Label::pluck('name', 'id')->all();
@@ -83,10 +80,6 @@ class TaskController extends Controller
 
     public function update(UpdateTaskRequest $request, Task $task)
     {
-        if (Auth::guest()) {
-            return redirect()->route('tasks.index');
-        }
-
         $data = $request->validated();
         $task->update($data);
         $task->save();

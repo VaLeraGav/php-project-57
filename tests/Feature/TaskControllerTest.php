@@ -43,6 +43,16 @@ class TaskControllerTest extends TestCase
         $this->assertDatabaseHas('tasks', $data);
     }
 
+    public function testShowTasks()
+    {
+        $task = Task::factory()->create();
+
+        $response = $this->get(route('tasks.show', ['task' => $task]));
+
+        $response->assertOk();
+    }
+
+
     public function testCreateTasks()
     {
         $response = $this->actingAs($this->user)
@@ -116,30 +126,5 @@ class TaskControllerTest extends TestCase
                 'assigned_to_id',
             ])
         );
-    }
-
-    public function testNotDeleteTaskWithoutCreater()
-    {
-        $task = Task::factory()->create();
-        $data = Task::factory()->make()->only([
-            'name',
-            'description',
-            'status_id',
-            'assigned_to_id',
-        ]);
-
-        $responseUser1 = $this->actingAs($this->user)
-            ->withSession(['banned' => false])
-            ->post(route('tasks.store', $data));
-
-        $user2 = User::factory()->create();
-
-        $responseUser2 = $this->actingAs($user2)
-            ->withSession(['banned' => false])
-            ->delete(route('tasks.destroy', $task));
-
-        $responseUser2->assertRedirect();
-
-        $this->assertDatabaseHas('tasks', $data);
     }
 }

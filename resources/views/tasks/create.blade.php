@@ -57,7 +57,7 @@
                 </div>
 
                 <div class="mt-2">
-                    {{ Form::label('labels', __('tasks.Performer')) }}
+                    {{ Form::label('labels', __('tasks.Tags')) }}
                 </div>
                 <div>
                     {{ Form::select('labels[]', $labels, null, ['class' => 'form-control rounded border-gray-300 w-1/3 h-32', 'multiple' => 'multiple']) }}

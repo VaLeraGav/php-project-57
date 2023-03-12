@@ -99,7 +99,6 @@ class LabelControllerTest extends TestCase
         $response = $this->put(route('labels.update', $label), $data);
 
         $response->assertStatus(403);
-
     }
 
     public function testDeleteLabels()

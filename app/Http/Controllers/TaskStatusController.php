@@ -8,7 +8,6 @@ use App\Models\TaskStatus;
 
 class TaskStatusController extends Controller
 {
-
     public function __construct()
     {
         $this->authorizeResource(TaskStatus::class, 'task_status');

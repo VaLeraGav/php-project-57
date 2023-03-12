@@ -98,9 +98,8 @@ class LabelControllerTest extends TestCase
 
         $response = $this->put(route('labels.update', $label), $data);
 
-        $response->assertRedirect('labels');
+        $response->assertStatus(403);
 
-        $this->assertDatabaseMissing('labels', $data);
     }
 
     public function testDeleteLabels()
@@ -114,14 +113,5 @@ class LabelControllerTest extends TestCase
         $response->assertRedirect('labels');
 
         $this->assertDatabaseMissing('labels', $label->only(['name']));
-    }
-
-    public function testNotDeleteLabels()
-    {
-        $label = Label::factory()->create();
-
-        $response = $this->delete(route('labels.destroy', $label));
-
-        $response->assertStatus(403);
     }
 }

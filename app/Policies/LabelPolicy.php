@@ -2,6 +2,8 @@
 
 namespace App\Policies;
 
+use App\Models\Label;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class LabelPolicy
@@ -11,9 +13,10 @@ class LabelPolicy
     /**
      * Determine whether the user can view any models.
      *
-     * @return bool
+     * @param  \App\Models\User  $user
+     * @return mixed
      */
-    public function viewAny()
+    public function viewAny(?User $user)
     {
         return true;
     }
@@ -21,9 +24,11 @@ class LabelPolicy
     /**
      * Determine whether the user can view the model.
      *
-     * @return bool
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Label  $label
+     * @return mixed
      */
-    public function view()
+    public function view(User $user, Label $label)
     {
         return true;
     }
@@ -31,9 +36,10 @@ class LabelPolicy
     /**
      * Determine whether the user can create models.
      *
-     * @return bool
+     * @param  \App\Models\User  $user
+     * @return mixed
      */
-    public function create()
+    public function create(User $user)
     {
         return true;
     }
@@ -41,19 +47,23 @@ class LabelPolicy
     /**
      * Determine whether the user can update the model.
      *
-     * @return bool
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Label  $label
+     * @return mixed
      */
-    public function update()
+    public function update(User $user, Label $label)
     {
-        return  true;
+        return true;
     }
 
     /**
      * Determine whether the user can delete the model.
      *
-     * @return bool
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Label  $label
+     * @return mixed
      */
-    public function delete()
+    public function delete(User $user, Label $label)
     {
         return true;
     }
@@ -61,9 +71,11 @@ class LabelPolicy
     /**
      * Determine whether the user can restore the model.
      *
-     * @return bool
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Label  $label
+     * @return mixed
      */
-    public function restore()
+    public function restore(User $user, Label $label)
     {
         return false;
     }
@@ -71,9 +83,11 @@ class LabelPolicy
     /**
      * Determine whether the user can permanently delete the model.
      *
-     * @return bool
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Label  $label
+     * @return mixed
      */
-    public function forceDelete()
+    public function forceDelete(User $user, Label $label)
     {
         return false;
     }

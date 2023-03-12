@@ -5,15 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreLabelRequest;
 use App\Http\Requests\UpdateLabelRequest;
 use App\Models\Label;
+use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
 
 class LabelController extends Controller
 {
     public function __construct()
     {
-        $this->authorizeResource(Label::class, 'label', [
-            'except' => ['index', 'update']
-        ]);
+        $this->authorizeResource(Label::class, 'label');
     }
 
     public function index()
@@ -47,10 +46,6 @@ class LabelController extends Controller
 
     public function update(UpdateLabelRequest $request, Label $label)
     {
-        if (Auth::guest()) {
-            return redirect()->route('labels.index');
-        }
-
         $data = $request->validated();
         $label->fill($data);
         $label->save();
@@ -64,7 +59,7 @@ class LabelController extends Controller
     {
         if ($label->tasks()->exists()) {
             flash(__('flash.label.failed'))->error();
-            return redirect()->route('labels.index');
+            return redirect()->route('task_statuses.index');
         }
 
         $label->delete();

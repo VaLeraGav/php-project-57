@@ -40,10 +40,8 @@
                                        href="{{ route('labels.destroy', $label) }}">
                                         {{ __('labels.Delete') }}
                                     </a>
-
                                     <a class="text-blue-600 hover:text-blue-900"
-                                       href="{{ route('labels.edit', $label->id) }}">{{ __('labels.Edit') }}
-                                    </a>
+                                       href="{{ route('labels.edit', $label->id) }}">{{ __('labels.Edit') }}</a>
                                 </td>
                             @endauth
                         </tr>

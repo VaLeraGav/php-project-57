@@ -17,9 +17,7 @@ class TaskController extends Controller
 {
     public function __construct()
     {
-        $this->authorizeResource(Task::class, 'task', [
-            'except' => ['index', 'destroy'],
-        ]);
+        $this->authorizeResource(Task::class, 'task');
     }
 
     public function index(Request $request)
@@ -34,13 +32,17 @@ class TaskController extends Controller
             ])
             ->orderBy('id', 'asc')
             ->paginate(10);
-        $filter = $request->get('filter');
+        $filter = $request->filter;
 
         return view('tasks.index', compact('tasks', 'users', 'taskStatuses', 'filter'));
     }
 
     public function create()
     {
+        if (Auth::guest()) {
+            return abort(403);
+        }
+
         $taskStatuses = TaskStatus::pluck('name', 'id')->all();
         $users = User::pluck('name', 'id')->all();
         $labels = Label::pluck('name', 'id')->all();
@@ -48,23 +50,31 @@ class TaskController extends Controller
         return view('tasks.create', compact('taskStatuses', 'users', 'labels'));
     }
 
-    public function show(Task $task)
-    {
-        return view('tasks.show', compact('task'));
-    }
-
     public function store(StoreTaskRequest $request)
     {
         $data = $request->validated();
         $user = Auth::user();
 
-        $task = $user->tasks()->make($data);
+        $task = $user->tasks()->make();
+        $task->fill($data);
         $task->save();
-        $task->labels()->sync($request->labels);
+
+        $labels = $request->input('labels') ?? [];
+
+        $result = array_filter($labels, function ($label) {
+            return isset($label);
+        });
+
+        $task->labels()->sync($result);
 
         flash(__('flash.task.added'))->success();
         return redirect()
             ->route('tasks.index');
+    }
+
+    public function show(Task $task)
+    {
+        return view('tasks.show', compact('task'));
     }
 
     public function edit(Task $task)
@@ -79,10 +89,17 @@ class TaskController extends Controller
     public function update(UpdateTaskRequest $request, Task $task)
     {
         $data = $request->validated();
-        $task->update($data);
+
+        $task->fill($data);
         $task->save();
 
-        $task->labels()->sync($request->labels);
+        $labels = $request->input('labels') ?? [];
+
+        $result = array_filter($labels, function ($label) {
+            return isset($label);
+        });
+
+        $task->labels()->sync($result);
 
         flash(__('flash.task.edited'))->success();
         return redirect()

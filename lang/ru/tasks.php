@@ -7,6 +7,7 @@ return [
     'Performer' => 'Исполнитель',
     'Apply' => 'Применить',
     'Create a task' => 'Создать задачу',
+    'Task edit header' => 'Изменение задачи',
     'Name' => 'Имя',
     'Author' => 'Автор',
     'Creation date' => 'Дата создания',

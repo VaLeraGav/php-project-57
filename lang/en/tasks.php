@@ -7,6 +7,7 @@ return [
     'Performer' => 'Performer',
     'Apply' => 'Apply',
     'Create a task' => 'Create a task',
+    'Task edit header' => 'Task edit header',
     'Name' => 'Name',
     'Author' => 'Author',
     'Creation date' => 'Creation date',

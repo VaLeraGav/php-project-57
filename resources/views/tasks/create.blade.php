@@ -6,13 +6,14 @@
             <h1 class="mb-5">{{ __('tasks.Create a task') }}</h1>
 
             {{ Form::open(['url' => route('tasks.store'), 'method' => 'POST', 'class' => 'w-50']) }}
-            <div class="flex flex-col">
+            @csrf
 
+            <div class="flex flex-col">
                 <div>
                     {{ Form::label('name', __('tasks.Name')) }}
                 </div>
                 <div class="mt-2">
-                    {{ Form::text('name', '', ['class' => 'form-control rounded border-gray-300 w-1/3']) }}
+                    {{ Form::text('name', old('name'), ['class' => 'form-control rounded border-gray-300 w-1/3']) }}
                 </div>
                 <div class="d-block text-sm text-red-600 space-y-1">
                     @foreach ($errors->get('name') as $error)
@@ -24,7 +25,7 @@
                     {{ Form::label('description', __('tasks.Description')) }}
                 </div>
                 <div>
-                    {{ Form::textarea('description', '', ['class' => 'rounded border-gray-300 w-1/3 h-32']) }}
+                    {{ Form::textarea('description', old('description'), ['class' => 'rounded border-gray-300 w-1/3 h-32']) }}
                 </div>
                 <div class="d-block text-sm text-red-600 space-y-1">
                     @foreach ($errors->get('description') as $error)
@@ -36,7 +37,10 @@
                     {{ Form::label('status_id', __('tasks.Status')) }}
                 </div>
                 <div>
-                    {{ Form::select('status_id', $taskStatuses, null, ['class' => 'form-control rounded border-gray-300 w-1/3', 'placeholder' => '----------']) }}
+                    {{ Form::select('status_id', $taskStatuses, null, [
+                            'class' => 'form-control rounded border-gray-300 w-1/3',
+                            'placeholder' => '----------']
+                    ) }}
                 </div>
                 <div class="d-block text-sm text-red-600 space-y-1">
                     @foreach ($errors->get('status_id') as $error)
@@ -48,20 +52,34 @@
                     {{ Form::label('assigned_to_id', __('tasks.Performer')) }}
                 </div>
                 <div>
-                    {{ Form::select('assigned_to_id', $users, null, ['class' => 'form-control rounded border-gray-300 w-1/3', 'placeholder' => '----------']) }}
+                    {{ Form::select('assigned_to_id', $users, null, [
+                            'class' => 'form-control rounded border-gray-300 w-1/3',
+                            'id' => 'assigned_to_id',
+                            'placeholder' => '----------'
+                    ]) }}
                 </div>
                 <div class="d-block text-sm text-red-600 space-y-1">
                     @foreach ($errors->get('assigned_to_id') as $error)
                         {{ $error }}
                     @endforeach
                 </div>
-
                 <div class="mt-2">
-                    {{ Form::label('labels', __('tasks.Performer')) }}
+                    {{ Form::label('labels', __('tasks.Tags')) }}
                 </div>
                 <div>
-                    {{ Form::select('labels[]', $labels, null, ['class' => 'form-control rounded border-gray-300 w-1/3 h-32', 'multiple' => 'multiple']) }}
+                    {{ Form::select('labels[]', $labels, null, [
+                            'class' => 'form-control rounded border-gray-300 w-1/3 h-32',
+                            'id' => 'labels',
+                            'multiple' => 'multiple',
+                            'placeholder' => '',
+                    ]) }}
                 </div>
+                <div class="d-block text-sm text-red-600 space-y-1">
+                    @foreach ($errors->get('labels') as $error)
+                        {{ $error }}
+                    @endforeach
+                </div>
+
                 <div class="mt-2">
                     {{ Form::submit( __('tasks.Create'), ['class' => 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded']) }}
                 </div>

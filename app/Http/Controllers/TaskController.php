@@ -55,9 +55,17 @@ class TaskController extends Controller
         $data = $request->validated();
         $user = Auth::user();
 
-        $task = $user->tasks()->make($data);
+        $task = $user->tasks()->make();
+        $task->fill($data);
         $task->save();
-        $task->labels()->sync($request->labels);
+
+        $labels = $request->input('labels') ?? [];
+
+        $result = array_filter($labels, function ($label) {
+            return isset($label);
+        });
+
+        $task->labels()->sync($result);
 
         flash(__('flash.task.added'))->success();
         return redirect()
@@ -81,10 +89,17 @@ class TaskController extends Controller
     public function update(UpdateTaskRequest $request, Task $task)
     {
         $data = $request->validated();
-        $task->update($data);
+
+        $task->fill($data);
         $task->save();
 
-        $task->labels()->sync($request->labels);
+        $labels = $request->input('labels') ?? [];
+
+        $result = array_filter($labels, function ($label) {
+            return isset($label);
+        });
+
+        $task->labels()->sync($result);
 
         flash(__('flash.task.edited'))->success();
         return redirect()

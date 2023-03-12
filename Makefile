@@ -1,4 +1,4 @@
-PORT ?= 8000
+PORT ?= 8001
 start:
 	php artisan serve --host 0.0.0.0:$(PORT)
 

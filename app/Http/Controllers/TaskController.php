@@ -39,10 +39,6 @@ class TaskController extends Controller
 
     public function create()
     {
-        if (Auth::guest()) {
-            return abort(403);
-        }
-
         $taskStatuses = TaskStatus::pluck('name', 'id')->all();
         $users = User::pluck('name', 'id')->all();
         $labels = Label::pluck('name', 'id')->all();

@@ -32,3 +32,10 @@ $ cd php-project-57
 $ make setup
 ```
 
+## Project setup and start docker
+
+```
+git clone https://github.com/VaLeraGav/php-project-57.git
+cd php-project-57
+make docker-setup-start
+```

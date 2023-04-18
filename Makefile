@@ -38,3 +38,12 @@ lint:
 
 lint-fix:
 	composer phpcbf -- --standard=PSR12 app routes tests
+
+docker-setup-start:
+	./vendor/bin/sail up -d
+
+docker-stop:
+	./vendor/bin/sail stop
+
+sail-migrate-refresh-seed:
+	./vendor/bin/sail artisan migrate:refresh --seed
